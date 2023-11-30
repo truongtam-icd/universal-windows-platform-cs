@@ -21,5 +21,5 @@ https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudi
 ```
 Open application:
   Visual Studio Installer
-  import ~/project/uwp-component-one/.vsconfig
+  import ~/project/universal-windows-platform-c#/.vsconfig
 ```
