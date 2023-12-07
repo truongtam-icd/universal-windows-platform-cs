@@ -26,11 +26,12 @@ namespace universal_windows_platform_c_.Core.Services
             if (connectionStrings != null)
             {
                 connString = connectionStrings["PostgreSQLConnectionString"].ToString();
-            } else
+            }
+            else
             {
                 return false;
             }
-            
+
             try
             {
                 var dataSource = NpgsqlDataSource.Create(connString);
@@ -45,7 +46,8 @@ namespace universal_windows_platform_c_.Core.Services
                 }
                 return false;
             }
-            catch {
+            catch
+            {
                 Debug.WriteLine("Please check server or config database!");
                 return false;
             }
