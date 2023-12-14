@@ -11,9 +11,9 @@ namespace universal_windows_platform_c_.ViewModels
 {
     public class UserDetailDetailViewModel : ObservableObject
     {
-        private SampleOrder _item;
+        private Order _item;
 
-        public SampleOrder Item
+        public Order Item
         {
             get { return _item; }
             set { SetProperty(ref _item, value); }
@@ -23,10 +23,10 @@ namespace universal_windows_platform_c_.ViewModels
         {
         }
 
-        public async Task InitializeAsync(long orderID)
+        public async Task InitializeAsync(long OrderId)
         {
-            var data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderID == orderID);
+            var data = await DataService.GetContentGridDataAsync();
+            Item = data.First(i => i.OrderId == OrderId);
         }
     }
 }

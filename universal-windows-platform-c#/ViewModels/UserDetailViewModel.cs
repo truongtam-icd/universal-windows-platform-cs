@@ -18,9 +18,9 @@ namespace universal_windows_platform_c_.ViewModels
     {
         private ICommand _itemClickCommand;
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
+        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Order>(OnItemClick));
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<Order> Source { get; } = new ObservableCollection<Order>();
 
         public UserDetailViewModel()
         {
@@ -31,19 +31,19 @@ namespace universal_windows_platform_c_.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await SampleDataService.GetContentGridDataAsync();
+            var data = await DataService.GetContentGridDataAsync();
             foreach (var item in data)
             {
                 Source.Add(item);
             }
         }
 
-        private void OnItemClick(SampleOrder clickedItem)
+        private void OnItemClick(Order clickedItem)
         {
             if (clickedItem != null)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
-                NavigationService.Navigate<UserDetailDetailPage>(clickedItem.OrderID);
+                NavigationService.Navigate<UserDetailDetailPage>(clickedItem.OrderId);
             }
         }
     }

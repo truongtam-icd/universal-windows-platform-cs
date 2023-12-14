@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace universal_windows_platform_c_.Core.Models
 {
-    // Remove this class once your pages/features are using your data.
-    // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and List Detail.
-    public class SampleCompany
+    public class Company
     {
-        public string CompanyID { get; set; }
+        public int CompanyId { get; set; }
 
         public string CompanyName { get; set; }
 
@@ -28,6 +24,6 @@ namespace universal_windows_platform_c_.Core.Models
 
         public string Fax { get; set; }
 
-        public ICollection<SampleOrder> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

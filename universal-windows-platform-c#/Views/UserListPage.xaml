@@ -21,7 +21,7 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                    <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                    <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" />
                     <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                     <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
                     <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
@@ -29,7 +29,7 @@
                     <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate x:DataType="model:SampleOrder">
+                            <DataTemplate x:DataType="model:Order">
                                 <FontIcon
                                     Margin="{StaticResource SmallLeftRightMargin}"
                                     HorizontalAlignment="Left"

@@ -23,3 +23,23 @@ Open application:
   Visual Studio Installer
   import ~/project/universal-windows-platform-c#/.vsconfig
 ```
+
+## Migration
+
+### Turtorial
+```
+https://scriptbytes.io/postgresql-database-entity-framework-migrations/
+https://github.com/ScriptBytes/TodoAPI/tree/migrations-postgres
+```
+
+### How to use?
+```
+Open Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console)
+cd ~project/universal-windows-platform-c#.Core
+Get-Help about_EntityFrameworkCore
+```
+
+### Add-Migration
+```
+Add-Migration <Name>
+```

@@ -21,27 +21,6 @@ namespace universal_windows_platform_c_.Views
             InitializeComponent();
             // Debug.WriteLine(Logging.LogPath);
             // Logging.Info("Insert logging to file!");
-
-            try
-            {
-                Task.Run(async () =>
-                {
-                    Debug.WriteLine("Waiting connect databases ...");
-                    var result = await DataSourceService.TestConnection();
-                    if (result)
-                    {
-                        Debug.WriteLine("Connect success!");
-                    } else
-                    {
-                        Debug.WriteLine("Connect fail!");
-                    }
-                    Debug.WriteLine("End connect databases!");
-                });
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            } 
         }
     }
 }

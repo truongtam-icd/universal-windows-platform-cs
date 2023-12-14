@@ -12,25 +12,25 @@ namespace universal_windows_platform_c_.Core.Services
     // 1. Services/SampleDataService.cs
     // 2. Models/SampleCompany.cs
     // 3. Models/SampleOrder.cs
-    // 4. Models/SampleOrderDetail.cs
-    public static class SampleDataService
+    // 4. Models/SampleProduct.cs
+    public static class DataService
     {
-        private static IEnumerable<SampleOrder> _allOrders;
+        private static IEnumerable<Order> _allOrders;
 
-        private static IEnumerable<SampleOrder> AllOrders()
+        private static IEnumerable<Order> AllOrders()
         {
             // The following is order summary data
             var companies = AllCompanies();
             return companies.SelectMany(c => c.Orders);
         }
 
-        private static IEnumerable<SampleCompany> AllCompanies()
+        private static IEnumerable<Company> AllCompanies()
         {
-            return new List<SampleCompany>()
+            return new List<Company>()
             {
-                new SampleCompany()
+                new Company()
                 {
-                    CompanyID = "ALFKI",
+                    CompanyId = 1,
                     CompanyName = "Company A",
                     ContactName = "Maria Anders",
                     ContactTitle = "Sales Representative",
@@ -40,11 +40,11 @@ namespace universal_windows_platform_c_.Core.Services
                     Country = "Germany",
                     Phone = "030-0074321",
                     Fax = "030-0076545",
-                    Orders = new List<SampleOrder>()
+                    Orders = new List<Order>()
                     {
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10643,
+                            OrderId = 10643,
                             OrderDate = new DateTime(1997, 8, 25),
                             RequiredDate = new DateTime(1997, 9, 22),
                             ShippedDate = new DateTime(1997, 9, 22),
@@ -56,11 +56,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 814.50,
                             Status = "Shipped",
                             SymbolCode = 57643, // Symbol Globe
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 28,
+                                    ProductId = 28,
                                     ProductName = "Rössle Sauerkraut",
                                     Quantity = 15,
                                     Discount = 0.25,
@@ -70,9 +70,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Dried fruit and bean curd",
                                     Total = 513.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 39,
+                                    ProductId = 39,
                                     ProductName = "Chartreuse verte",
                                     Quantity = 21,
                                     Discount = 0.25,
@@ -82,9 +82,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Soft drinks, coffees, teas, beers, and ales",
                                     Total = 283.50
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 46,
+                                    ProductId = 46,
                                     ProductName = "Spegesild",
                                     Quantity = 2,
                                     Discount = 0.25,
@@ -96,9 +96,9 @@ namespace universal_windows_platform_c_.Core.Services
                                 }
                             }
                         },
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10835,
+                            OrderId = 10835,
                             OrderDate = new DateTime(1998, 1, 15),
                             RequiredDate = new DateTime(1998, 2, 12),
                             ShippedDate = new DateTime(1998, 1, 21),
@@ -110,11 +110,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 845.80,
                             Status = "Closed",
                             SymbolCode = 57737, // Symbol Audio
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 59,
+                                    ProductId = 59,
                                     ProductName = "Raclette Courdavault",
                                     Quantity = 15,
                                     Discount = 0,
@@ -124,9 +124,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Cheeses",
                                     Total = 825.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 77,
+                                    ProductId = 77,
                                     ProductName = "Original Frankfurter grüne Soße",
                                     Quantity = 2,
                                     Discount = 0.2,
@@ -138,9 +138,9 @@ namespace universal_windows_platform_c_.Core.Services
                                 }
                             }
                         },
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10952,
+                            OrderId = 10952,
                             OrderDate = new DateTime(1998, 3, 16),
                             RequiredDate = new DateTime(1998, 4, 27),
                             ShippedDate = new DateTime(1998, 3, 24),
@@ -152,11 +152,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 471.20,
                             Status = "Closed",
                             SymbolCode = 57699, // Symbol Calendar
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 6,
+                                    ProductId = 6,
                                     ProductName = "Grandma's Boysenberry Spread",
                                     Quantity = 16,
                                     Discount = 0.05,
@@ -166,9 +166,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Sweet and savory sauces, relishes, spreads, and seasonings",
                                     Total = 380.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 28,
+                                    ProductId = 28,
                                     ProductName = "Rössle Sauerkraut",
                                     Quantity = 2,
                                     Discount = 0,
@@ -182,9 +182,9 @@ namespace universal_windows_platform_c_.Core.Services
                         }
                     }
                 },
-                new SampleCompany()
+                new Company()
                 {
-                    CompanyID = "ANATR",
+                    CompanyId = 2,
                     CompanyName = "Company F",
                     ContactName = "Ana Trujillo",
                     ContactTitle = "Owner",
@@ -194,11 +194,11 @@ namespace universal_windows_platform_c_.Core.Services
                     Country = "Mexico",
                     Phone = "(5) 555-4729",
                     Fax = "(5) 555-3745",
-                    Orders = new List<SampleOrder>()
+                    Orders = new List<Order>()
                     {
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10625,
+                            OrderId = 10625,
                             OrderDate = new DateTime(1997, 8, 8),
                             RequiredDate = new DateTime(1997, 9, 5),
                             ShippedDate = new DateTime(1997, 8, 14),
@@ -210,11 +210,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 469.75,
                             Status = "Shipped",
                             SymbolCode = 57620, // Symbol Camera
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 14,
+                                    ProductId = 14,
                                     ProductName = "Tofu",
                                     Quantity = 3,
                                     Discount = 0,
@@ -224,9 +224,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Dried fruit and bean curd",
                                     Total = 69.75
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 42,
+                                    ProductId = 42,
                                     ProductName = "Singaporean Hokkien Fried Mee",
                                     Quantity = 5,
                                     Discount = 0,
@@ -236,9 +236,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Breads, crackers, pasta, and cereal",
                                     Total = 70.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 60,
+                                    ProductId = 60,
                                     ProductName = "Camembert Pierrot",
                                     Quantity = 10,
                                     Discount = 0,
@@ -250,9 +250,9 @@ namespace universal_windows_platform_c_.Core.Services
                                 }
                             }
                         },
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10926,
+                            OrderId = 10926,
                             OrderDate = new DateTime(1998, 3, 4),
                             RequiredDate = new DateTime(1998, 4, 1),
                             ShippedDate = new DateTime(1998, 3, 11),
@@ -264,11 +264,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 507.20,
                             Status = "Shipped",
                             SymbolCode = 57633, // Symbol Clock
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 11,
+                                    ProductId = 11,
                                     ProductName = "Queso Cabrales",
                                     Quantity = 2,
                                     Discount = 0,
@@ -278,9 +278,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Cheeses",
                                     Total = 42.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 13,
+                                    ProductId = 13,
                                     ProductName = "Konbu",
                                     Quantity = 10,
                                     Discount = 0,
@@ -290,9 +290,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Seaweed and fish",
                                     Total = 60.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 19,
+                                    ProductId = 19,
                                     ProductName = "Teatime Chocolate Biscuits",
                                     Quantity = 7,
                                     Discount = 0,
@@ -302,9 +302,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Desserts, candies, and sweet breads",
                                     Total = 64.40
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 72,
+                                    ProductId = 72,
                                     ProductName = "Mozzarella di Giovanni",
                                     Quantity = 10,
                                     Discount = 0,
@@ -318,9 +318,9 @@ namespace universal_windows_platform_c_.Core.Services
                         }
                     }
                 },
-                new SampleCompany()
+                new Company()
                 {
-                    CompanyID = "ANTON",
+                    CompanyId = 3,
                     CompanyName = "Company Z",
                     ContactName = "Antonio Moreno",
                     ContactTitle = "Owner",
@@ -330,11 +330,11 @@ namespace universal_windows_platform_c_.Core.Services
                     Country = "Mexico",
                     Phone = "(5) 555-3932",
                     Fax = string.Empty,
-                    Orders = new List<SampleOrder>()
+                    Orders = new List<Order>()
                     {
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10507,
+                            OrderId = 10507,
                             OrderDate = new DateTime(1997, 4, 15),
                             RequiredDate = new DateTime(1997, 5, 13),
                             ShippedDate = new DateTime(1997, 4, 22),
@@ -346,11 +346,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 978.50,
                             Status = "Closed",
                             SymbolCode = 57661, // Symbol Contact
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 43,
+                                    ProductId = 43,
                                     ProductName = "Ipoh Coffee",
                                     Quantity = 15,
                                     Discount = 0.15,
@@ -360,9 +360,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Soft drinks, coffees, teas, beers, and ales",
                                     Total = 816.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 48,
+                                    ProductId = 48,
                                     ProductName = "Chocolade",
                                     Quantity = 15,
                                     Discount = 0.15,
@@ -374,9 +374,9 @@ namespace universal_windows_platform_c_.Core.Services
                                 }
                             }
                         },
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10573,
+                            OrderId = 10573,
                             OrderDate = new DateTime(1997, 6, 19),
                             RequiredDate = new DateTime(1997, 7, 17),
                             ShippedDate = new DateTime(1997, 6, 20),
@@ -388,11 +388,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 2082.00,
                             Status = "Closed",
                             SymbolCode = 57619, // Symbol Star
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 17,
+                                    ProductId = 17,
                                     ProductName = "Alice Mutton",
                                     Quantity = 18,
                                     Discount = 0,
@@ -402,9 +402,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Prepared meats",
                                     Total = 702.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 34,
+                                    ProductId = 34,
                                     ProductName = "Sasquatch Ale",
                                     Quantity = 40,
                                     Discount = 0,
@@ -414,9 +414,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Soft drinks, coffees, teas, beers, and ales",
                                     Total = 560.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 53,
+                                    ProductId = 53,
                                     ProductName = "Perth Pasties",
                                     Quantity = 25,
                                     Discount = 0,
@@ -428,9 +428,9 @@ namespace universal_windows_platform_c_.Core.Services
                                 }
                             }
                         },
-                        new SampleOrder()
+                        new Order()
                         {
-                            OrderID = 10682,
+                            OrderId = 10682,
                             OrderDate = new DateTime(1997, 9, 25),
                             RequiredDate = new DateTime(1997, 10, 23),
                             ShippedDate = new DateTime(1997, 10, 1),
@@ -442,11 +442,11 @@ namespace universal_windows_platform_c_.Core.Services
                             OrderTotal = 375.50,
                             Status = "Closed",
                             SymbolCode = 57615, // Symbol Home
-                            Details = new List<SampleOrderDetail>()
+                            Details = new List<Product>()
                             {
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 33,
+                                    ProductId = 33,
                                     ProductName = "Geitost",
                                     Quantity = 30,
                                     Discount = 0,
@@ -456,9 +456,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Cheeses",
                                     Total = 75.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 66,
+                                    ProductId = 66,
                                     ProductName = "Louisiana Hot Spiced Okra",
                                     Quantity = 4,
                                     Discount = 0,
@@ -468,9 +468,9 @@ namespace universal_windows_platform_c_.Core.Services
                                     CategoryDescription = "Sweet and savory sauces, relishes, spreads, and seasonings",
                                     Total = 68.00
                                 },
-                                new SampleOrderDetail()
+                                new Product()
                                 {
-                                    ProductID = 75,
+                                    ProductId = 75,
                                     ProductName = "Rhönbräu Klosterbier",
                                     Quantity = 30,
                                     Discount = 0,
@@ -488,7 +488,7 @@ namespace universal_windows_platform_c_.Core.Services
         }
 
         // Remove this once your ContentGrid page is displaying real data.
-        public static async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
+        public static async Task<IEnumerable<Order>> GetContentGridDataAsync()
         {
             if (_allOrders == null)
             {
@@ -500,7 +500,7 @@ namespace universal_windows_platform_c_.Core.Services
         }
 
         // Remove this once your grid page is displaying real data.
-        public static async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
+        public static async Task<IEnumerable<Order>> GetGridDataAsync()
         {
             await Task.CompletedTask;
             return AllOrders();

@@ -11,7 +11,7 @@ namespace universal_windows_platform_c_.ViewModels
 {
     public class UserListViewModel : ObservableObject
     {
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<Order> Source { get; } = new ObservableCollection<Order>();
 
         public UserListViewModel()
         {
@@ -22,7 +22,7 @@ namespace universal_windows_platform_c_.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await SampleDataService.GetGridDataAsync();
+            var data = await DataService.GetGridDataAsync();
 
             foreach (var item in data)
             {

@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Configuration;
-using System.Linq;
+﻿using System.Configuration;
 using System.Threading.Tasks;
-
-using universal_windows_platform_c_.Core.Models;
-using System.ComponentModel.Design;
-
 using Npgsql;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data;
 
 namespace universal_windows_platform_c_.Core.Services
 {
     public static class DataSourceService
     {
+        private static NpgsqlConnection connection;
         public static async Task<bool> TestConnection()
         {
             string connString;
             var connectionStrings = ConfigurationManager.ConnectionStrings;
-
+            
             if (connectionStrings != null)
             {
                 connString = connectionStrings["PostgreSQLConnectionString"].ToString();
@@ -34,10 +25,19 @@ namespace universal_windows_platform_c_.Core.Services
 
             try
             {
-                var dataSource = NpgsqlDataSource.Create(connString);
-                var connection = await dataSource.OpenConnectionAsync();
-                var cmd = new NpgsqlCommand("SELECT '1'", connection);
-                using (var reader = await cmd.ExecuteReaderAsync())
+                connection = new NpgsqlConnection
+                {
+                    ConnectionString = connString
+                };
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand
+                {
+                    CommandType = CommandType.Text,
+                    CommandText = "SELECT '1'",
+                    Connection = connection
+                };
+
+                using (NpgsqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
                     while (await reader.ReadAsync())
                     {
@@ -49,11 +49,16 @@ namespace universal_windows_platform_c_.Core.Services
             catch
             {
                 Debug.WriteLine("Please check server or config database!");
+                // connection.Close();
                 return false;
+            }
+            finally
+            {
+                // connection.Close();
             }
         }
 
-        public static async Task<NpgsqlConnection> GetConnection()
+        public static async Task<NpgsqlDataReader> Query(string query)
         {
             string connString;
             var connectionStrings = ConfigurationManager.ConnectionStrings;
@@ -69,14 +74,32 @@ namespace universal_windows_platform_c_.Core.Services
 
             try
             {
-                var dataSource = NpgsqlDataSource.Create(connString);
-                var connection = await dataSource.OpenConnectionAsync();
-                return connection;
+                connection = new NpgsqlConnection
+                {
+                    ConnectionString = connString
+                };
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand
+                {
+                    CommandType = CommandType.Text,
+                    CommandText = query,
+                    Connection = connection
+                };
+
+                using (NpgsqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    return reader;
+                }
             }
             catch
             {
                 Debug.WriteLine("Please check server or config database!");
+                connection.Close();
                 return null;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
     }

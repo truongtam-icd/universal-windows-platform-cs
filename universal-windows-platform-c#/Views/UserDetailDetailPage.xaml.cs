@@ -23,9 +23,9 @@ namespace universal_windows_platform_c_.Views
         {
             base.OnNavigatedTo(e);
             this.RegisterElementForConnectedAnimation("animationKeyUserDetail", itemHero);
-            if (e.Parameter is long orderID)
+            if (e.Parameter is long OrderId)
             {
-                await ViewModel.InitializeAsync(orderID);
+                await ViewModel.InitializeAsync(OrderId);
             }
         }
 

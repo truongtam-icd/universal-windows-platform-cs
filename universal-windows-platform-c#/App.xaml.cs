@@ -1,7 +1,9 @@
-﻿using System;
-
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using universal_windows_platform_c_.Services;
-
+using UWPApp.PostgreSQL;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -23,6 +25,22 @@ namespace universal_windows_platform_c_
 
             // Deferred execution until used. Check https://docs.microsoft.com/dotnet/api/system.lazy-1 for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
+
+            try
+            {
+                Task.Run(async () =>
+                {
+                    using (var context = new UWPContext())
+                    {
+                        await context.Database.EnsureDeletedAsync();
+                        await context.Database.EnsureCreatedAsync();
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
