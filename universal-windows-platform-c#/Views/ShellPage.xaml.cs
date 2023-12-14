@@ -23,17 +23,17 @@ namespace universal_windows_platform_c_.Views
             {
                 Task.Run(async () =>
                 {
-                    Debug.WriteLine("Waiting connect databases ...");
+                    Debug.WriteLine(string.Format("{0}: Waiting connect databases ...", "ShellPage"));
                     var result = await DataSourceService.TestConnection();
                     if (result)
                     {
-                        Debug.WriteLine("Connect success!");
+                        Debug.WriteLine(string.Format("{0}: Connect success!", "ShellPage"));
                     }
                     else
                     {
-                        Debug.WriteLine("Connect fail!");
+                        Debug.WriteLine(string.Format("{0}: Connect fail!", "ShellPage"));
                     }
-                    Debug.WriteLine("End connect databases!");
+                    Debug.WriteLine(string.Format("{0}: End connect databases!", "ShellPage"));
                 });
             }
             catch (Exception ex)

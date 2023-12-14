@@ -32,14 +32,13 @@ namespace universal_windows_platform_c_
                 {
                     using (var context = new UWPContext())
                     {
-                        await context.Database.EnsureDeletedAsync();
                         await context.Database.EnsureCreatedAsync();
                     }
                 });
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                Debug.WriteLine(string.Format("DbContext EnsureCreatedAsync {0}", ex));
             }
         }
 

@@ -49,12 +49,12 @@ namespace universal_windows_platform_c_.Core.Services
             catch
             {
                 Debug.WriteLine("Please check server or config database!");
-                // connection.Close();
+                connection.Close();
                 return false;
             }
             finally
             {
-                // connection.Close();
+                connection.Close();
             }
         }
 

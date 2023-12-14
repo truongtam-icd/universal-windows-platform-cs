@@ -26,5 +26,14 @@ namespace UWPApp.PostgreSQL
             modelBuilder.Entity<Product>(product => { });
             base.OnModelCreating(modelBuilder);
         }
+
+        public void CreateCompanys()
+        {
+            Company company = new Company()
+            {
+                CompanyName = "Test"
+            };
+            Companys.Add(company);
+        }
     }
 }
