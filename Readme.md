@@ -52,7 +52,12 @@ dotnet ef dbcontext scaffold "Host=localhost;Username=postgres;Password=root;Dat
 
 ### How to use?
 
+Init
 ```bash 
 dotnet ef migrations add InitialCreate --framework net5.0
+```
+
+Update
+```bash 
 dotnet ef database update --framework net5.0
 ```
