@@ -5,6 +5,9 @@
 Visual Studio 2022
 PostgreSQL 16
 ComponentOne 2023v2 (Active). Install UWP Edition (>=2023v2 790)
+.NET 7.0 SDK >= 7.0.404
+dotnet --list-runtimes support Microsoft.NETCore.App 5.0.17
+dotnet-ef version 5.0.17
 ```
 
 
@@ -26,20 +29,30 @@ Open application:
 
 ## Migration
 
-### Turtorial
+### Document
+
+```bash
+https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
+https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/GetStarted
 ```
-https://scriptbytes.io/postgresql-database-entity-framework-migrations/
-https://github.com/ScriptBytes/TodoAPI/tree/migrations-postgres
+
+### How to install?
+
+```bash
+dotnet tool install --global dotnet-ef --version 5.0.17
+dotnet-ef --version
+```
+
+### Using an Existing Database
+
+```bash
+cd ~\project\universal-windows-platform-c#.Migration
+dotnet ef dbcontext scaffold "Host=localhost;Username=postgres;Password=root;Database=UWP_CS" Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
 ### How to use?
-```
-Open Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console)
-cd ~project/universal-windows-platform-c#.Core
-Get-Help about_EntityFrameworkCore
-```
 
-### Add-Migration
-```
-Add-Migration <Name>
+```bash 
+dotnet ef migrations add InitialCreate --framework net5.0
+dotnet ef database update --framework net5.0
 ```

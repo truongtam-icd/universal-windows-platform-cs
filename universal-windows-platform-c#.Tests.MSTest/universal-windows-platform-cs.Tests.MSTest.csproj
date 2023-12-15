@@ -169,9 +169,9 @@
     <None Include="universal-windows-platform-c#.Tests.MSTest_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\universal-windows-platform-c#\universal-windows-platform-c#.csproj">
+    <ProjectReference Include="..\universal-windows-platform-c#\universal-windows-platform-cs.csproj">
       <Project>{06145BF3-0902-4A2D-BE62-D0CAB6854A2C}</Project>
-      <Name>universal-windows-platform-c#</Name>
+      <Name>universal-windows-platform-cs</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

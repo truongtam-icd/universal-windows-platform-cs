@@ -25,21 +25,6 @@ namespace universal_windows_platform_c_
 
             // Deferred execution until used. Check https://docs.microsoft.com/dotnet/api/system.lazy-1 for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
-
-            try
-            {
-                Task.Run(async () =>
-                {
-                    using (var context = new UWPContext())
-                    {
-                        await context.Database.EnsureCreatedAsync();
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(string.Format("DbContext EnsureCreatedAsync {0}", ex));
-            }
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)

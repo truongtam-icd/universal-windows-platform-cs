@@ -268,9 +268,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\universal-windows-platform-c#.Core\universal-windows-platform-c#.Core.csproj">
+    <ProjectReference Include="..\universal-windows-platform-c#.Core\universal-windows-platform-cs.Core.csproj">
       <Project>{CAEBF42A-1FCE-404D-8C0B-12C762297824}</Project>
-      <Name>universal-windows-platform-c#.Core</Name>
+      <Name>universal-windows-platform-cs.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
