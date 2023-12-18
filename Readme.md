@@ -9,6 +9,7 @@ ComponentOne 2023v2 (Active). Install UWP Edition (>=2023v2 790)
 dotnet --list-runtimes support Microsoft.NETCore.App 5.0.17
 dotnet-ef version 5.0.17
 ```
+![Alt text](./images/dotnet-runtimes.png)
 
 
 ## Extensions
@@ -42,6 +43,7 @@ https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/GetStarted
 dotnet tool install --global dotnet-ef --version 5.0.17
 dotnet-ef --version
 ```
+![Alt text](./images/dotnet-ef.png)
 
 ### Using an Existing Database
 
