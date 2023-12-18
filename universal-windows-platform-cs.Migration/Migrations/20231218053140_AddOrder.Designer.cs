@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace universalwindowsplatformcs.Migration.Migrations
 {
     [DbContext(typeof(UWPContext))]
-    [Migration("20231215073957_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231218053140_AddOrder")]
+    partial class AddOrder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-                    
+
                     b.Property<int?>("CompanyId")
                         .HasColumnType("integer");
 
@@ -114,9 +114,6 @@ namespace universalwindowsplatformcs.Migration.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("OrderId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("text");
 
@@ -125,6 +122,9 @@ namespace universalwindowsplatformcs.Migration.Migrations
 
                     b.Property<double>("Discount")
                         .HasColumnType("double precision");
+
+                    b.Property<long?>("OrderId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("text");

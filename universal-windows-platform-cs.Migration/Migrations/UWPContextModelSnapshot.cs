@@ -65,9 +65,6 @@ namespace universalwindowsplatformcs.Migration.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Company")
-                        .HasColumnType("text");
-
                     b.Property<int?>("CompanyId")
                         .HasColumnType("integer");
 

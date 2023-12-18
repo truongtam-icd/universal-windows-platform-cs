@@ -1,8 +1,12 @@
-﻿namespace universal_windows_platform_cs.Core.Models
+﻿using Microsoft.Extensions.Logging;
+
+namespace universal_windows_platform_cs.Core.Models
 {
     public class Product
     {
         public long ProductId { get; set; }
+
+        public long OrderId { get; set; }
 
         public string ProductName { get; set; }
 

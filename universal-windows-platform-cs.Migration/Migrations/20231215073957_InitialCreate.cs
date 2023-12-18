@@ -35,18 +35,17 @@ namespace universalwindowsplatformcs.Migration.Migrations
                 {
                     OrderId = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CompanyId = table.Column<int>(nullable: true),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     RequiredDate = table.Column<DateTime>(nullable: false),
                     ShippedDate = table.Column<DateTime>(nullable: false),
                     ShipperName = table.Column<string>(nullable: true),
                     ShipperPhone = table.Column<string>(nullable: true),
                     Freight = table.Column<double>(nullable: false),
-                    Company = table.Column<string>(nullable: true),
                     ShipTo = table.Column<string>(nullable: true),
                     OrderTotal = table.Column<double>(nullable: false),
                     Status = table.Column<string>(nullable: true),
-                    SymbolCode = table.Column<int>(nullable: false),
-                    CompanyId = table.Column<int>(nullable: true)
+                    SymbolCode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,6 +64,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                 {
                     ProductId = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrderId = table.Column<long>(nullable: true),
                     ProductName = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
                     Discount = table.Column<double>(nullable: false),
@@ -73,7 +73,6 @@ namespace universalwindowsplatformcs.Migration.Migrations
                     CategoryName = table.Column<string>(nullable: true),
                     CategoryDescription = table.Column<string>(nullable: true),
                     Total = table.Column<double>(nullable: false),
-                    OrderId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {

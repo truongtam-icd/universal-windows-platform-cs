@@ -7,6 +7,8 @@ namespace universal_windows_platform_cs.Core.Models
     {
         public long OrderId { get; set; }
 
+        public int CompanyId { get; set; }
+
         public DateTime OrderDate { get; set; }
 
         public DateTime RequiredDate { get; set; }
@@ -18,8 +20,6 @@ namespace universal_windows_platform_cs.Core.Models
         public string ShipperPhone { get; set; }
 
         public double Freight { get; set; }
-
-        public string Company { get; set; }
 
         public string ShipTo { get; set; }
 
@@ -35,7 +35,7 @@ namespace universal_windows_platform_cs.Core.Models
 
         public override string ToString()
         {
-            return $"{Company} {Status}";
+            return $"{CompanyId} {Status}";
         }
 
         public string ShortDescription => $"Order ID: {OrderId}";

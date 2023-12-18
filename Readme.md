@@ -35,6 +35,7 @@ Open application:
 ```bash
 https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
 https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/GetStarted
+https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migration.aspx
 ```
 
 ### How to install?
@@ -65,14 +66,24 @@ Update config
 }
 ```
 
-Init
+Init (Not need)
 ```bash 
 cd ~project\universal-windows-platform-cs.Migration
 dotnet ef migrations add InitialCreate --framework net5.0
 ```
 
+Show all
+```bash
+dotnet ef migrations list
+```
+
 Update
 ```bash 
 cd ~project\universal-windows-platform-cs.Migration
-dotnet ef database update --framework net5.0
+dotnet ef database update [20231218053028_AddCompany] --framework net5.0
+```
+
+Create
+```bash
+dotnet ef migrations add [AddComapny] --framework net5.0
 ```

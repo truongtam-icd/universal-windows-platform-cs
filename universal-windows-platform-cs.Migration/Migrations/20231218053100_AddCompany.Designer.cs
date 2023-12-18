@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace universalwindowsplatformcs.Migration.Migrations
 {
     [DbContext(typeof(UWPContext))]
-    [Migration("20231215073957_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231218053100_AddCompany")]
+    partial class AddCompany
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-                    
+
                     b.Property<int?>("CompanyId")
                         .HasColumnType("integer");
 
@@ -115,7 +115,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<long?>("OrderId")
-                        .HasColumnType("bigint");
+                       .HasColumnType("bigint");
 
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("text");
