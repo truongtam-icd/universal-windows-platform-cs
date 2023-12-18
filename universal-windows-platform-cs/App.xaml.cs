@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System;
 using universal_windows_platform_cs.Services;
-using UWPApp.PostgreSQL;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 

@@ -12,6 +12,7 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class ShellPage : Page
     {
         public ShellViewModel ViewModel { get; } = new ShellViewModel();
+        private static readonly string PageName = "ShellPage";
 
         public ShellPage()
         {
@@ -23,22 +24,22 @@ namespace universal_windows_platform_cs.Views
             {
                 Task.Run(async () =>
                 {
-                    Debug.WriteLine(string.Format("{0}: Waiting connect databases ...", "ShellPage"));
+                    Debug.WriteLine($"{PageName}: Waiting connect databases ...");
                     var result = await DataSourceService.TestConnection();
                     if (result)
                     {
-                        Debug.WriteLine(string.Format("{0}: Connect success!", "ShellPage"));
+                        Debug.WriteLine($"{PageName}: Connect success!");
                     }
                     else
                     {
-                        Debug.WriteLine(string.Format("{0}: Connect fail!", "ShellPage"));
+                        Debug.WriteLine($"{PageName}: Connect fail!");
                     }
-                    Debug.WriteLine(string.Format("{0}: End connect databases!", "ShellPage"));
+                    Debug.WriteLine($"{PageName}: End connect databases!");
                 });
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                Debug.WriteLine($"{PageName}: {ex}");
             }
         }
     }

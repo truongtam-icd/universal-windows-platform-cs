@@ -47,17 +47,30 @@ dotnet-ef --version
 
 ```bash
 cd ~\project\universal-windows-platform-c#.Migration
-dotnet ef dbcontext scaffold "Host=localhost;Username=postgres;Password=root;Database=UWP_CS" Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet ef dbcontext scaffold "Host=[localhost];Username=[user];Password=[pass];Database=[database]" Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
 ### How to use?
 
+Update config
+```
+~\project\universal-windows-platform-cs.Migration/appsettings.json
+
+{
+    "ConnectionString": {
+        "PostgreSQL": "Host=[localhost];Username=[user];Password=[pass];Database=[database]"
+    }
+}
+```
+
 Init
 ```bash 
+cd ~project\universal-windows-platform-cs.Migration
 dotnet ef migrations add InitialCreate --framework net5.0
 ```
 
 Update
 ```bash 
+cd ~project\universal-windows-platform-cs.Migration
 dotnet ef database update --framework net5.0
 ```

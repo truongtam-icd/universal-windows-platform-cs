@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Configuration;
-using System.Diagnostics;
 using universal_windows_platform_cs.Core.Models;
 
 namespace UWPApp.PostgreSQL
