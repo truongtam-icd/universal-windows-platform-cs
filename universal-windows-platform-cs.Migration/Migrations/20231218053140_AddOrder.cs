@@ -30,13 +30,13 @@ namespace universalwindowsplatformcs.Migration.Migrations
             values: new object[,] {
                 { 
                     1, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), 
-                    "Speedy Express", "(503) 555-9831", 29.46, "Company A, Obere Str. 57, Berlin, 12209, Germany",
+                    "Speedy Express", "(503) 555-2112", 29.46, "Company A, Obere Str. 57, Berlin, 12209, Germany",
                     814.50, "Shipped", 57643
                 },
                 {
                     2, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12),
-                    "Speedy Express", "(503) 555-9831", 29.46, "Company B, Obere Str. 57, Berlin, 12209, Germany",
-                    814.50, "Shipped", 57661
+                    "Maria Anders", "(503) 555-9831", 11.12, "Company B, Avda. de la Constitución",
+                    321.22, "Shipped", 57661
                 }
             });
         }

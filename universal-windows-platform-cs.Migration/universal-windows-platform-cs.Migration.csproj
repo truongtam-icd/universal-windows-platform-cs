@@ -6,6 +6,7 @@
 	<OutputType>Exe</OutputType>
 	<StartupObject></StartupObject>
 	<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+	<CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
 
    <ItemGroup>

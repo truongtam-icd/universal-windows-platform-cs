@@ -8,7 +8,6 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class ShellPage : Page
     {
         public ShellViewModel ViewModel { get; } = new ShellViewModel();
-        private static readonly string PageName = "ShellPage";
 
         public ShellPage()
         {

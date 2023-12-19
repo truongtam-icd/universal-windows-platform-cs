@@ -11,6 +11,10 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
+        <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
+            <!-- Loading screen content -->
+            Loading ...
+        </controls:Loading>
         <controls:AdaptiveGridView
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="itemThumbnail"

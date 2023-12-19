@@ -29,8 +29,8 @@ namespace universalwindowsplatformcs.Migration.Migrations
                     "Berlin", "12209", "Germany", "030-0074321", "030-0076545" 
                 },
                 {
-                    "Company B", "Name Test", "Title Test", "Obere Str. 57",
-                    "Berlin", "12209", "Germany", "030-0074321", "030-0076545"
+                    "Company B", "Speedy Express", "Avda. de la Constitución", "México D.F.",
+                    "Mexico", "32   09", "Mexico", "(503) 555-9831", "(503) 555-9831"
                 }
             });
         }
