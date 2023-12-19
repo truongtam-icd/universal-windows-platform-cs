@@ -29,7 +29,7 @@ namespace universal_windows_platform_cs.Core.Services
                 {
                     ConnectionString = connString
                 };
-                connection.Open();
+                await connection.OpenAsync();
                 NpgsqlCommand cmd = new NpgsqlCommand
                 {
                     CommandType = CommandType.Text,
@@ -41,20 +41,21 @@ namespace universal_windows_platform_cs.Core.Services
                 {
                     while (await reader.ReadAsync())
                     {
-                        if (reader.GetString(0) == "1") return true;
+                        if (reader.GetString(0) == "1")
+                        {
+                            await connection.CloseAsync();
+                            return true;
+                        }
                     }
                 }
+                await connection.CloseAsync();
                 return false;
             }
             catch
             {
                 Debug.WriteLine("Please check server or config database!");
-                connection.Close();
+                await connection.CloseAsync();
                 return false;
-            }
-            finally
-            {
-                connection.Close();
             }
         }
 
@@ -78,7 +79,7 @@ namespace universal_windows_platform_cs.Core.Services
                 {
                     ConnectionString = connString
                 };
-                connection.Open();
+                await connection.OpenAsync();
                 NpgsqlCommand cmd = new NpgsqlCommand
                 {
                     CommandType = CommandType.Text,
@@ -88,18 +89,15 @@ namespace universal_windows_platform_cs.Core.Services
 
                 using (NpgsqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
+                    await connection.CloseAsync();
                     return reader;
                 }
             }
             catch
             {
                 Debug.WriteLine("Please check server or config database!");
-                connection.Close();
+                await connection.CloseAsync();
                 return null;
-            }
-            finally
-            {
-                connection.Close();
             }
         }
     }

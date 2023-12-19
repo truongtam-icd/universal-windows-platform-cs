@@ -2,11 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("universal-windows-platform-c#.Tests.MSTest")]
+[assembly: AssemblyTitle("universal-windows-platform-cs.Tests.MSTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("universal-windows-platform-c#.Tests.MSTest")]
+[assembly: AssemblyProduct("universal-windows-platform-cs.Tests.MSTest")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

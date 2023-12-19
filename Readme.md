@@ -25,7 +25,7 @@ https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudi
 ```
 Open application:
   Visual Studio Installer
-  import ~/project/universal-windows-platform-c#/.vsconfig
+  import ~/project/universal-windows-platform-cs/.vsconfig
 ```
 
 ## Migration
@@ -49,7 +49,7 @@ dotnet-ef --version
 ### Using an Existing Database
 
 ```bash
-cd ~\project\universal-windows-platform-c#.Migration
+cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef dbcontext scaffold "Host=[localhost];Username=[user];Password=[pass];Database=[database]" Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 

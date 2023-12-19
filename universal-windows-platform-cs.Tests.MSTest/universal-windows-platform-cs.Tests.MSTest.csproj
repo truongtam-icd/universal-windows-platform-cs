@@ -7,7 +7,7 @@
     <ProjectGuid>{3F8B1405-7863-424C-982E-15E187D45F98}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>universal_windows_platform_c_.Tests.MSTest</RootNamespace>
+    <RootNamespace>universal_windows_platform_cs.Tests.MSTest</RootNamespace>
     <AssemblyName>universal-windows-platform-cs.Tests.MSTest</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -128,7 +128,7 @@
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tests.cs" />
+    <Compile Include="DbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="UnitTestApp.xaml">
@@ -169,10 +169,17 @@
     <None Include="universal-windows-platform-cs.Tests.MSTest_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\universal-windows-platform-cs.Core\universal-windows-platform-cs.Core.csproj">
+      <Project>{caebf42a-1fce-404d-8c0b-12c762297824}</Project>
+      <Name>universal-windows-platform-cs.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\universal-windows-platform-cs\universal-windows-platform-cs.csproj">
       <Project>{06145BF3-0902-4A2D-BE62-D0CAB6854A2C}</Project>
       <Name>universal-windows-platform-cs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

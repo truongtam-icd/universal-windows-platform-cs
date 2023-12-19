@@ -13,33 +13,32 @@ namespace universalwindowsplatformcs.Migration.Migrations
         {
             Console.WriteLine($"Migrations Up Table: {Name}");
             migrationBuilder.InsertData(
-                table: "Order",
-                columns: new[] {
-                    nameof(Order.CompanyId),
-                    nameof(Order.OrderDate),
-                    nameof(Order.RequiredDate),
-                    nameof(Order.ShippedDate),
-                    nameof(Order.ShipperName),
-                    nameof(Order.ShipperPhone),
-                    nameof(Order.Freight),
-                    nameof(Order.ShipTo),
-                    nameof(Order.OrderTotal),
-                    nameof(Order.Status),
-                    nameof(Order.SymbolCode)
+            table: "Order",
+            columns: new[] {
+                nameof(Order.CompanyId),
+                nameof(Order.OrderDate),
+                nameof(Order.RequiredDate),
+                nameof(Order.ShippedDate),
+                nameof(Order.ShipperName),
+                nameof(Order.ShipperPhone),
+                nameof(Order.Freight),
+                nameof(Order.ShipTo),
+                nameof(Order.OrderTotal),
+                nameof(Order.Status),
+                nameof(Order.SymbolCode)
+            },
+            values: new object[,] {
+                { 
+                    1, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), 
+                    "Speedy Express", "(503) 555-9831", 29.46, "Company A, Obere Str. 57, Berlin, 12209, Germany",
+                    814.50, "Shipped", 57643
                 },
-                values: new object[,] {
-                    { 
-                        1, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), 
-                        "Speedy Express", "(503) 555-9831", 29.46, "Company A, Obere Str. 57, Berlin, 12209, Germany",
-                        814.50, "Shipped", 57643
-                    },
-                    {
-                        2, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12),
-                        "Speedy Express", "(503) 555-9831", 29.46, "Company B, Obere Str. 57, Berlin, 12209, Germany",
-                        814.50, "Shipped", 57643
-                    }
+                {
+                    2, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12),
+                    "Speedy Express", "(503) 555-9831", 29.46, "Company B, Obere Str. 57, Berlin, 12209, Germany",
+                    814.50, "Shipped", 57643
                 }
-            );
+            });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
