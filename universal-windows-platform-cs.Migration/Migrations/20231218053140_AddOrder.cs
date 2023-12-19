@@ -36,7 +36,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                 {
                     2, new DateTime(2023, 12, 12), new DateTime(2023, 12, 12), new DateTime(2023, 12, 12),
                     "Speedy Express", "(503) 555-9831", 29.46, "Company B, Obere Str. 57, Berlin, 12209, Germany",
-                    814.50, "Shipped", 57643
+                    814.50, "Shipped", 57661
                 }
             });
         }

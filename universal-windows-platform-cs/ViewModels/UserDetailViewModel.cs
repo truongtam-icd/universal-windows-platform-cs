@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -14,13 +13,18 @@ using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
+    public class UserDetailView : Order
+    {
+        public string Company { get; set; }
+    }
+
     public class UserDetailViewModel : ObservableObject
     {
         private ICommand _itemClickCommand;
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Order>(OnItemClick));
+        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<UserDetailView>(OnItemClick));
 
-        public ObservableCollection<Order> Source { get; } = new ObservableCollection<Order>();
+        public ObservableCollection<UserDetailView> Source { get; } = new ObservableCollection<UserDetailView>();
 
         public UserDetailViewModel()
         {
@@ -34,11 +38,28 @@ namespace universal_windows_platform_cs.ViewModels
             var data = await DataService.GetContentGridDataAsync();
             foreach (var item in data)
             {
-                Source.Add(item);
+                UserDetailView dataItem = new UserDetailView
+                {
+                    OrderId = item.OrderId,
+                    CompanyId = item.CompanyId,
+                    OrderDate = item.OrderDate,
+                    RequiredDate = item.RequiredDate,
+                    ShippedDate = item.ShippedDate,
+                    ShipperName = item.ShipperName,
+                    ShipperPhone = item.ShipperPhone,
+                    Freight = item.Freight,
+                    ShipTo = item.ShipTo,
+                    SymbolCode = item.SymbolCode,
+                    Status = item.Status,
+                    OrderTotal = item.OrderTotal,
+                    Details = item.Details,
+                    Company = await DataService.GetCompanyNameAsync(item.CompanyId)
+                };
+                Source.Add(dataItem);
             }
         }
 
-        private void OnItemClick(Order clickedItem)
+        private void OnItemClick(UserDetailView clickedItem)
         {
             if (clickedItem != null)
             {

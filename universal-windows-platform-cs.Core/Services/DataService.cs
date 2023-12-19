@@ -70,5 +70,14 @@ namespace universal_windows_platform_cs.Core.Services
             await Task.CompletedTask;
             return AllOrders();
         }
+
+        public static async Task<string> GetCompanyNameAsync(int CompanyId)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                return db.Company.Where(company => company.CompanyId == CompanyId).First().CompanyName;
+            }
+        }
     }
 }

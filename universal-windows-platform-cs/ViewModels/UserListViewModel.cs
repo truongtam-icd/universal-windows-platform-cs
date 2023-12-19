@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -9,9 +8,14 @@ using universal_windows_platform_cs.Core.Services;
 
 namespace universal_windows_platform_cs.ViewModels
 {
+    public class UserListView : Order
+    {
+        public string Company { get; set; }
+    }
+
     public class UserListViewModel : ObservableObject
     {
-        public ObservableCollection<Order> Source { get; } = new ObservableCollection<Order>();
+        public ObservableCollection<UserListView> Source { get; } = new ObservableCollection<UserListView>();
 
         public UserListViewModel()
         {
@@ -26,7 +30,24 @@ namespace universal_windows_platform_cs.ViewModels
 
             foreach (var item in data)
             {
-                Source.Add(item);
+                UserListView dataItem = new UserListView
+                {
+                    OrderId = item.OrderId,
+                    CompanyId = item.CompanyId,
+                    OrderDate = item.OrderDate,
+                    RequiredDate = item.RequiredDate,
+                    ShippedDate = item.ShippedDate,
+                    ShipperName = item.ShipperName,
+                    ShipperPhone = item.ShipperPhone,
+                    Freight = item.Freight,
+                    ShipTo = item.ShipTo,
+                    SymbolCode = item.SymbolCode,
+                    Status = item.Status,
+                    OrderTotal = item.OrderTotal,
+                    Details = item.Details,
+                    Company = await DataService.GetCompanyNameAsync(item.CompanyId)
+                };
+                Source.Add(dataItem);
             }
         }
     }
