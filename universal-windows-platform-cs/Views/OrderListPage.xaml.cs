@@ -9,13 +9,13 @@ using universal_windows_platform_cs.Core.Services;
 
 namespace universal_windows_platform_cs.Views
 {
-    public sealed partial class UserListPage : Page
+    public sealed partial class OrderListPage : Page
     {
-        public UserListViewModel ViewModel { get; } = new UserListViewModel();
+        public OrderListViewModel ViewModel { get; } = new OrderListViewModel();
 
-        // TODO: Change the grid as appropriate to your app, adjust the column definitions on UserListPage.xaml.
+        // TODO: Change the grid as appropriate to your app, adjust the column definitions on OrderListPage.xaml.
         // For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid
-        public UserListPage()
+        public OrderListPage()
         {
             InitializeComponent();
             LoadingControl.IsLoading = true;

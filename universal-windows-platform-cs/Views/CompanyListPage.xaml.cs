@@ -7,11 +7,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace universal_windows_platform_cs.Views
 {
-    public sealed partial class UserDetailPage : Page
+    public sealed partial class CompanyListPage : Page
     {
-        public UserDetailViewModel ViewModel { get; } = new UserDetailViewModel();
+        public CompanyListViewModel ViewModel { get; } = new CompanyListViewModel();
 
-        public UserDetailPage()
+        public CompanyListPage()
         {
             InitializeComponent();
             LoadingControl.IsLoading = true;

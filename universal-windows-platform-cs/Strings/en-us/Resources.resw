@@ -129,17 +129,17 @@
     <value>Main</value>
     <comment>Navigation view item name for Main</comment>
   </data>
-  <data name="Shell_UserDetail.Content" xml:space="preserve">
-    <value>Company</value>
-    <comment>Navigation view item name for UserDetail</comment>
+  <data name="Shell_CompanyList.Content" xml:space="preserve">
+    <value>Company List</value>
+    <comment>Navigation view item name for Company</comment>
   </data>
   <data name="DataTable.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Table showing sample sales data</value>
     <comment>Automation name (and description) for the DataGrid page content</comment>
   </data>
-  <data name="Shell_UserList.Content" xml:space="preserve">
+  <data name="Shell_OrderList.Content" xml:space="preserve">
     <value>Order List</value>
-    <comment>Navigation view item name for UserList</comment>
+    <comment>Navigation view item name for Order</comment>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Choose Theme</value>
@@ -176,5 +176,9 @@
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
     <comment>Personalization text for Settings</comment>
+  </data>
+  <data name="Shell_ProductList.Content" xml:space="preserve">
+    <value>ProductList</value>
+    <comment>Navigation view item name for ProductList</comment>
   </data>
 </root>

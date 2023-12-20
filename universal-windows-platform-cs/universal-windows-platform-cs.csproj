@@ -163,13 +163,17 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\UserDetailDetailViewModel.cs" />
-    <Compile Include="ViewModels\UserDetailViewModel.cs" />
-    <Compile Include="ViewModels\UserListViewModel.cs" />
+    <Compile Include="ViewModels\CompanyDetailViewModel.cs" />
+    <Compile Include="ViewModels\CompanyListViewModel.cs" />
+    <Compile Include="ViewModels\OrderListViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductListPage.xaml.cs">
+      <DependentUpon>ProductListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -177,14 +181,14 @@
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserDetailDetailPage.xaml.cs">
-      <DependentUpon>UserDetailDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\CompanyDetailPage.xaml.cs">
+      <DependentUpon>CompanyDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserDetailPage.xaml.cs">
-      <DependentUpon>UserDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\CompanyListPage.xaml.cs">
+      <DependentUpon>CompanyListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserListPage.xaml.cs">
-      <DependentUpon>UserListPage.xaml</DependentUpon>
+    <Compile Include="Views\OrderListPage.xaml.cs">
+      <DependentUpon>OrderListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ProductListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -226,15 +234,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserDetailDetailPage.xaml">
+    <Page Include="Views\CompanyDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserDetailPage.xaml">
+    <Page Include="Views\CompanyListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserListPage.xaml">
+    <Page Include="Views\OrderListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

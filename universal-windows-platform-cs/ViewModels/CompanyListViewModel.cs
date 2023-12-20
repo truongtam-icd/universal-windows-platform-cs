@@ -1,26 +1,32 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
+using universal_windows_platform_cs.Services;
+using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
-    public class UserListView : Order
+    public class CompanyListView : Order
     {
         public string Company { get; set; }
     }
 
-    public class UserListViewModel : ObservableObject
+    public class CompanyListViewModel : ObservableObject
     {
-        public ObservableCollection<UserListView> Source { get; } = new ObservableCollection<UserListView>();
-        public ObservableCollection<string> OrderStatus { get; set; } = new ObservableCollection<string> {
-            "", "Delivered", "Shipped"
-        };
+        private ICommand _itemClickCommand;
 
-        public UserListViewModel()
+        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<CompanyListView>(OnItemClick));
+
+        public ObservableCollection<CompanyListView> Source { get; } = new ObservableCollection<CompanyListView> ();
+
+        public CompanyListViewModel()
         {
         }
 
@@ -29,11 +35,10 @@ namespace universal_windows_platform_cs.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await DataService.GetGridDataAsync();
-
+            var data = await DataService.GetContentGridDataAsync();
             foreach (var item in data)
             {
-                UserListView dataItem = new UserListView
+                CompanyListView dataItem = new CompanyListView
                 {
                     OrderId = item.OrderId,
                     CompanyId = item.CompanyId,
@@ -51,6 +56,15 @@ namespace universal_windows_platform_cs.ViewModels
                     Company = await DataService.GetCompanyNameAsync(item.CompanyId)
                 };
                 Source.Add(dataItem);
+            }
+        }
+
+        private void OnItemClick(CompanyListView clickedItem)
+        {
+            if (clickedItem != null)
+            {
+                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
+                NavigationService.Navigate<CompanyDetailPage>(clickedItem.OrderId);
             }
         }
     }

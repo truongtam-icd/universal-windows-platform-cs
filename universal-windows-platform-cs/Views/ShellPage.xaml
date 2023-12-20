@@ -33,8 +33,8 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="views:MainPage" />
-            <winui:NavigationViewItem x:Uid="Shell_UserList" Icon="AllApps" helpers:NavHelper.NavigateTo="views:UserListPage" />
-            <winui:NavigationViewItem x:Uid="Shell_UserDetail" Icon="ReportHacked" helpers:NavHelper.NavigateTo="views:UserDetailPage" />
+            <winui:NavigationViewItem x:Uid="Shell_OrderList" Icon="AllApps" helpers:NavHelper.NavigateTo="views:OrderListPage" />
+            <winui:NavigationViewItem x:Uid="Shell_CompanyList" Icon="ReportHacked" helpers:NavHelper.NavigateTo="views:CompanyListPage" />
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior

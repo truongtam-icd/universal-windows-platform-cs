@@ -8,22 +8,22 @@ using universal_windows_platform_cs.Core.Services;
 
 namespace universal_windows_platform_cs.ViewModels
 {
-    public class UserDetailDetailView : Order
+    public class CompanyDetailView : Order
     {
         public string Company { get; set; }
     }
 
-    public class UserDetailDetailViewModel : ObservableObject
+    public class CompanyDetailViewModel : ObservableObject
     {
-        private UserDetailDetailView _item;
+        private CompanyDetailView _item;
 
-        public UserDetailDetailView Item
+        public CompanyDetailView Item
         {
             get { return _item; }
             set { SetProperty(ref _item, value); }
         }
 
-        public UserDetailDetailViewModel()
+        public CompanyDetailViewModel()
         {
         }
 
@@ -31,7 +31,7 @@ namespace universal_windows_platform_cs.ViewModels
         {
             var data = await DataService.GetContentGridDataAsync();
             Order item = data.First(i => i.OrderId == OrderId);
-            Item = new UserDetailDetailView()
+            Item = new CompanyDetailView()
             {
                 OrderId = item.OrderId,
                 CompanyId = item.CompanyId,

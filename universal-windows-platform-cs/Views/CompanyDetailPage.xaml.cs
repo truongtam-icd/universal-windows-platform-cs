@@ -10,11 +10,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace universal_windows_platform_cs.Views
 {
-    public sealed partial class UserDetailDetailPage : Page
+    public sealed partial class CompanyDetailPage : Page
     {
-        public UserDetailDetailViewModel ViewModel { get; } = new UserDetailDetailViewModel();
+        public CompanyDetailViewModel ViewModel { get; } = new CompanyDetailViewModel();
 
-        public UserDetailDetailPage()
+        public CompanyDetailPage()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace universal_windows_platform_cs.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.RegisterElementForConnectedAnimation("animationKeyUserDetail", itemHero);
+            this.RegisterElementForConnectedAnimation("animationKeyCompanyDetail", itemHero);
             if (e.Parameter is long OrderId)
             {
                 await ViewModel.InitializeAsync(OrderId);
