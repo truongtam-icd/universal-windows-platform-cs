@@ -1,6 +1,6 @@
 using Serilog;
+using System.Diagnostics;
 using System.IO;
-using System.ServiceModel.Channels;
 using Windows.Storage;
 
 namespace Logger
@@ -20,6 +20,8 @@ namespace Logger
                 .CreateLogger();
             Log.Information(message);
             Log.CloseAndFlush();
+
+            Debug.WriteLine($"Info: {message}");
         }
 
         public static void Error(string message)
@@ -31,6 +33,20 @@ namespace Logger
                 .CreateLogger();
             Log.Error(message);
             Log.CloseAndFlush();
+
+            Debug.WriteLine($"Error: {message}");
+        }
+
+        public static void Json(object Object) {
+            var logFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileLog);
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File(logFilePath, rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            Log.Information(Newtonsoft.Json.JsonConvert.SerializeObject(Object));
+            Log.CloseAndFlush();
+
+            Debug.WriteLine($"Json: {Newtonsoft.Json.JsonConvert.SerializeObject(Object)}");
         }
     }
 }

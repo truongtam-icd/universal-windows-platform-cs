@@ -15,22 +15,23 @@
                 Loading ...
             </controls:Loading>
             <controls:DataGrid
+                x:Name="OderData"
                 x:Uid="DataTable"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" CellEditEnded="UpdateOrderData">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO:
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                    <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                    <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" IsReadOnly="True" />
+                    <controls:DataGridTextColumn x:Name="OrderTotal" Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                    <controls:DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" />
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:Order">
