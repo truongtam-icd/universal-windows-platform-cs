@@ -2,12 +2,18 @@
     x:Class="universal_windows_platform_cs.Views.UserListPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:universal_windows_platform_cs.Helpers"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:model="using:universal_windows_platform_cs.Core.Models"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <helpers:DateConverter x:Key="conv"/>
+    </Page.Resources>
+    
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
@@ -19,15 +25,33 @@
                 x:Uid="DataTable"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}" CellEditEnded="UpdateOrderData">
+                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+                CellEditEnded="UpdateOrderData"
+                HorizontalScrollBarVisibility="Visible">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO:
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
+                    <controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <FontIcon
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                    Glyph="&#xE7AC;"
+                                />
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
                     <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" IsReadOnly="True" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding OrderDate, Converter={StaticResource conv}}"
+                        Header="OrderDate"
+                        IsReadOnly="True"
+                    />
                     <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" IsReadOnly="True" />
                     <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" IsReadOnly="True" />
                     <controls:DataGridTextColumn x:Name="OrderTotal" Binding="{Binding OrderTotal}" Header="OrderTotal" />
