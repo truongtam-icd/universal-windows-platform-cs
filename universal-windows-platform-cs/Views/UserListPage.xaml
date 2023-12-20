@@ -31,7 +31,12 @@
                     <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" IsReadOnly="True" />
                     <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" IsReadOnly="True" />
                     <controls:DataGridTextColumn x:Name="OrderTotal" Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <controls:DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" />
+                    <controls:DataGridComboBoxColumn
+                        x:Name="Status"
+                        Header="Status"
+                        Binding="{Binding Status}"
+                        ItemsSource="{x:Bind ViewModel.OrderStatus, Mode=OneWay}"
+                    />
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:Order">

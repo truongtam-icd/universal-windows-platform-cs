@@ -16,6 +16,9 @@ namespace universal_windows_platform_cs.ViewModels
     public class UserListViewModel : ObservableObject
     {
         public ObservableCollection<UserListView> Source { get; } = new ObservableCollection<UserListView>();
+        public ObservableCollection<string> OrderStatus { get; set; } = new ObservableCollection<string> {
+            "", "Delivered", "Shipped"
+        };
 
         public UserListViewModel()
         {
