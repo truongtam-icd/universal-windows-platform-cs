@@ -25,7 +25,7 @@ https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudi
 ```
 Open application:
   Visual Studio Installer
-  import ~/project/universal-windows-platform-cs/.vsconfig
+  import ~\project\.vsconfig
 ```
 
 ## Migration
@@ -36,7 +36,11 @@ Open application:
 https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
 https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/GetStarted
 https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migration.aspx
+https://www.npgsql.org/efcore/index.html
 ```
+
+### What is Package Manager Console?
+![Alt text](./images/console.png)
 
 ### How to install?
 
@@ -57,7 +61,7 @@ dotnet ef dbcontext scaffold "Host=[localhost];Username=[user];Password=[pass];D
 
 Update config
 ```
-~\project\universal-windows-platform-cs.Migration/appsettings.json
+~\project\universal-windows-platform-cs.Migration\appsettings.json
 
 {
     "ConnectionString": {
@@ -68,22 +72,30 @@ Update config
 
 Init (Not need)
 ```bash 
-cd ~project\universal-windows-platform-cs.Migration
+cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef migrations add InitialCreate --framework net5.0
 ```
 
-Show all
+Show all migrations
 ```bash
+cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef migrations list
 ```
 
 Update
 ```bash 
-cd ~project\universal-windows-platform-cs.Migration
+cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef database update [20231218053028_AddCompany] --framework net5.0
 ```
 
 Create
 ```bash
+cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef migrations add [AddComapny] --framework net5.0
+```
+
+Rollback
+```bash
+cd ~\project\universal-windows-platform-cs.Migration
+dotnet ef database update 0 --framework net5.0
 ```
