@@ -13,7 +13,23 @@
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
-            <TextBlock>Create new Product</TextBlock>
+            <RelativePanel
+                Margin="{StaticResource MarginHeader}">
+                <StackPanel x:Name="NewProduct">
+                    <TextBlock>ProductName</TextBlock>
+                    <TextBox
+            x:Name="ProductName"
+            TextChanged="ProductNameText"></TextBox>
+                    <TextBlock>Total</TextBlock>
+                    <TextBox
+            x:Name="Total"
+            TextChanged="TotalText"></TextBox>
+                    <Button
+            Command="{x:Bind ViewModel.CreateProductCommand}">
+                        Create
+                    </Button>
+                </StackPanel>
+            </RelativePanel>
         </Grid>
     </Grid>
 </Page>

@@ -29,7 +29,8 @@
 
         <ScrollViewer
             x:Name="contentScroll"
-            IsTabStop="True">
+            IsTabStop="True"
+            Margin="{StaticResource MarginHeader}">
             <StackPanel
                 Margin="{StaticResource MediumLeftRightMargin}"
                 x:Name="contentPanel">

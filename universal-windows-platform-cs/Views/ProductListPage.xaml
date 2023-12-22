@@ -16,13 +16,18 @@
                 Loading ...
             </controls:Loading>
 
+            <TextBlock
+                Text="{x:Bind OrderName}"
+                Margin="{StaticResource OffsetHeader}"></TextBlock>
+
             <controls:DataGrid
                 x:Name="ProductData"
                 x:Uid="DataTable"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
-                HorizontalScrollBarVisibility="Visible">
+                HorizontalScrollBarVisibility="Visible"
+                Margin="{StaticResource MarginHeader}">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Binding="{Binding ProductId}" Header="ProductId" IsReadOnly="True" />
                     <controls:DataGridTextColumn Binding="{Binding ProductName}" Header="ProductName" IsReadOnly="True" />
@@ -35,7 +40,7 @@
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
             <Button
-                Command="{x:Bind ViewModel.CreateProductCommand}">
+                Command="{x:Bind ViewModel.ProductAddPageProductCommand}">
                 Add Product
             </Button>
         </Grid>

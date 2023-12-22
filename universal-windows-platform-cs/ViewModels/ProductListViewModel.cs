@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -14,8 +15,9 @@ namespace universal_windows_platform_cs.ViewModels
     public class ProductListViewModel : ObservableObject
     {
         private ICommand _newProductCommand;
-        public ICommand CreateProductCommand => _newProductCommand ?? (_newProductCommand = new RelayCommand(CreateProduct));
+        public ICommand ProductAddPageProductCommand => _newProductCommand ?? (_newProductCommand = new RelayCommand(PageNewProduct));
         public ObservableCollection<Product> Source { get; } = new ObservableCollection<Product>();
+        public static long OrderId { get; set; }
 
         public ProductListViewModel()
         {
@@ -23,6 +25,7 @@ namespace universal_windows_platform_cs.ViewModels
 
         public async Task InitializeAsync(long OrderId)
         {
+            ProductListViewModel.OrderId = OrderId;
             Source.Clear();
             await Task.CompletedTask;
             List<Product> data = await ProductService.GetByOrderId(OrderId);
@@ -31,9 +34,9 @@ namespace universal_windows_platform_cs.ViewModels
                 Source.Add(item);
             }
         }
-        private static void CreateProduct()
+        private static void PageNewProduct()
         {
-            NavigationService.Navigate<ProductAddPage>();
+            NavigationService.Navigate<ProductAddPage>(ProductListViewModel.OrderId);
         }
     }
 }

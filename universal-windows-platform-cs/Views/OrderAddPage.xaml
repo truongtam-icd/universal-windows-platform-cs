@@ -13,9 +13,23 @@
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
-            <TextBlock>
-                Page create new order
-            </TextBlock>
+            <RelativePanel
+                Margin="{StaticResource MarginHeader}">
+                <StackPanel x:Name="NewOrder">
+                    <TextBlock>CompanyId</TextBlock>
+                    <TextBox
+                        x:Name="CompanyId"
+                        TextChanged="CompanyIdText"></TextBox>
+                    <TextBlock>ShipperName</TextBlock>
+                    <TextBox
+                        x:Name="ShipperName"
+                        TextChanged="ShipperNameText"></TextBox>
+                    <Button
+                        Command="{x:Bind ViewModel.CreateOrderCommand}">
+                        Create
+                    </Button>
+                </StackPanel>
+            </RelativePanel>
         </Grid>
     </Grid>
 </Page>

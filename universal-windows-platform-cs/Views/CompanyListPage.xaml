@@ -25,7 +25,8 @@
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
             SelectionMode="None"
-            StretchContentForSingleRow="False">
+            StretchContentForSingleRow="False"
+            Margin="{StaticResource MarginHeader}">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:CompanyListView">
                     <Grid

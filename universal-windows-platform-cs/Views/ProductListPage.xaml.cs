@@ -11,6 +11,7 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class ProductListPage : Page
     {
         public ProductListViewModel ViewModel { get; } = new ProductListViewModel();
+        public string OrderName { get; set; }
 
         public ProductListPage()
         {
@@ -24,6 +25,7 @@ namespace universal_windows_platform_cs.Views
             if (e.Parameter is long OrderId)
             {
                 await ViewModel.InitializeAsync(OrderId);
+                OrderName = $"Show all Product of OrderId {OrderId}";
             }
             LoadingControl.IsLoading = false;
         }

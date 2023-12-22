@@ -37,5 +37,29 @@ namespace universal_windows_platform_cs.Core.Services
                 }
             }
         }
+
+        public static async Task<bool> Add(Order Order)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    db.Order.Add(Order);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return false;
+                }
+            }
+        }
+
+        public static Task Add(Product productItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

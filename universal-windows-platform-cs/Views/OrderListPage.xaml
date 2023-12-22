@@ -28,7 +28,8 @@
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                 CellEditEnded="UpdateOrderData"
-                HorizontalScrollBarVisibility="Visible">
+                HorizontalScrollBarVisibility="Visible"
+                Margin="{StaticResource MarginHeader}">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn.CellTemplate>
