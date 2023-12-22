@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+    
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
@@ -13,6 +14,10 @@
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
+            <TextBlock
+                Margin="{StaticResource SmallTopMargin}"
+                Style="{StaticResource DetailSubTitleStyle}"
+                Text="Product List" />        
         </Grid>
     </Grid>
 </Page>

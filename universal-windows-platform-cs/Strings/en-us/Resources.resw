@@ -178,7 +178,7 @@
     <comment>Personalization text for Settings</comment>
   </data>
   <data name="Shell_ProductList.Content" xml:space="preserve">
-    <value>ProductList</value>
-    <comment>Navigation view item name for ProductList</comment>
+    <value>Product List</value>
+    <comment>Navigation view item name for Product</comment>
   </data>
 </root>

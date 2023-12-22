@@ -1,23 +1,36 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-
+using Microsoft.Toolkit.Mvvm.Input;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
+using universal_windows_platform_cs.Services;
+using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
     public class OrderListView : Order
     {
         public string Company { get; set; }
+        private ICommand _navigateCommand;
+        public ICommand NavigateCommand => _navigateCommand ?? (_navigateCommand = new RelayCommand<long>(ViewProductPage));
+
+        private static void ViewProductPage(long OrderId)
+        {
+            if (OrderId > 0)
+            {
+                NavigationService.Navigate<ProductListPage>(OrderId);
+            }
+        }
     }
 
     public class OrderListViewModel : ObservableObject
     {
         public ObservableCollection<OrderListView> Source { get; } = new ObservableCollection<OrderListView>();
         public ObservableCollection<string> OrderStatus { get; set; } = new ObservableCollection<string> {
-            "", "Delivered", "Shipped"
+            "Available", "Delivered", "Shipped"
         };
 
         public OrderListViewModel()

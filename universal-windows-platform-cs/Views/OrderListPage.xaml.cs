@@ -13,8 +13,6 @@ namespace universal_windows_platform_cs.Views
     {
         public OrderListViewModel ViewModel { get; } = new OrderListViewModel();
 
-        // TODO: Change the grid as appropriate to your app, adjust the column definitions on OrderListPage.xaml.
-        // For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid
         public OrderListPage()
         {
             InitializeComponent();

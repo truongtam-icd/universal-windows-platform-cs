@@ -1,6 +1,4 @@
-﻿using System;
-
-using universal_windows_platform_cs.ViewModels;
+﻿using universal_windows_platform_cs.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 
