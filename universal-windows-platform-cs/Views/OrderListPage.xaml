@@ -20,7 +20,7 @@
                 <!-- Loading screen content -->
                 Loading ...
             </controls:Loading>
-            
+
             <controls:DataGrid
                 x:Name="OderData"
                 x:Uid="DataTable"
@@ -72,6 +72,11 @@
                     </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
+            <Button
+                Command="{x:Bind ViewModel.CreateOrderCommand}"
+                >
+                Add Order
+            </Button>
         </Grid>
     </Grid>
 </Page>

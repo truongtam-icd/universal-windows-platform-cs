@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -28,6 +27,8 @@ namespace universal_windows_platform_cs.ViewModels
 
     public class OrderListViewModel : ObservableObject
     {
+        private ICommand _newOrderCommand;
+        public ICommand CreateOrderCommand => _newOrderCommand ?? (_newOrderCommand = new RelayCommand(CreateOrder));
         public ObservableCollection<OrderListView> Source { get; } = new ObservableCollection<OrderListView>();
         public ObservableCollection<string> OrderStatus { get; set; } = new ObservableCollection<string> {
             "Available", "Delivered", "Shipped"
@@ -65,6 +66,11 @@ namespace universal_windows_platform_cs.ViewModels
                 };
                 Source.Add(dataItem);
             }
+        }
+
+        private static void CreateOrder()
+        {
+            NavigationService.Navigate<OrderAddPage>();
         }
     }
 }

@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    xmlns:models="using:universal_windows_platform_cs.ViewModels"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     
@@ -35,6 +34,10 @@
                     <controls:DataGridTextColumn Binding="{Binding CategoryDescription}" Header="CategoryDescription" IsReadOnly="True" />
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
+            <Button
+                Command="{x:Bind ViewModel.CreateProductCommand}">
+                Add Product
+            </Button>
         </Grid>
     </Grid>
 </Page>

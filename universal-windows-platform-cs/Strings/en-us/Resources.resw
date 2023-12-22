@@ -130,7 +130,7 @@
     <comment>Navigation view item name for Main</comment>
   </data>
   <data name="Shell_CompanyList.Content" xml:space="preserve">
-    <value>Company List</value>
+    <value>Company</value>
     <comment>Navigation view item name for Company</comment>
   </data>
   <data name="DataTable.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>Automation name (and description) for the DataGrid page content</comment>
   </data>
   <data name="Shell_OrderList.Content" xml:space="preserve">
-    <value>Order List</value>
+    <value>Order</value>
     <comment>Navigation view item name for Order</comment>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
@@ -180,5 +180,13 @@
   <data name="Shell_ProductList.Content" xml:space="preserve">
     <value>Product List</value>
     <comment>Navigation view item name for Product</comment>
+  </data>
+  <data name="Shell_ProductAdd.Content" xml:space="preserve">
+    <value>ProductAdd</value>
+    <comment>Navigation view item name for ProductAdd</comment>
+  </data>
+  <data name="Shell_OrderAdd.Content" xml:space="preserve">
+    <value>OrderAdd</value>
+    <comment>Navigation view item name for OrderAdd</comment>
   </data>
 </root>
