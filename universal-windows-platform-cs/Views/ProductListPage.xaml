@@ -5,19 +5,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:models="using:universal_windows_platform_cs.ViewModels"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--
-                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.
-            -->
-            <TextBlock
-                Margin="{StaticResource SmallTopMargin}"
-                Style="{StaticResource DetailSubTitleStyle}"
-                Text="Product List" />        
+            <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
+                <!-- Loading screen content -->
+                Loading ...
+            </controls:Loading>
+
+            <controls:DataGrid
+                x:Name="ProductData"
+                x:Uid="DataTable"
+                AutoGenerateColumns="False"
+                GridLinesVisibility="Horizontal"
+                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+                HorizontalScrollBarVisibility="Visible">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Binding="{Binding ProductId}" Header="ProductId" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding ProductName}" Header="ProductName" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding CategoryName}" Header="CategoryName" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding Total}" Header="Total" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding QuantityPerUnit}" Header="QuantityPerUnit" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding UnitPrice}" Header="UnitPrice" IsReadOnly="True" />
+                    <controls:DataGridTextColumn Binding="{Binding CategoryDescription}" Header="CategoryDescription" IsReadOnly="True" />
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
         </Grid>
     </Grid>
 </Page>
