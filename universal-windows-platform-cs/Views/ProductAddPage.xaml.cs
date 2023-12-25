@@ -13,11 +13,12 @@ namespace universal_windows_platform_cs.Views
     {
         public ProductAddViewModel ViewModel { get; } = new ProductAddViewModel();
 
-        public static Product ProductItem { get; set; } = new Product();
+        public static Product ProductItem { get; set; }
 
         public ProductAddPage()
         {
             InitializeComponent();
+            ProductItem = new Product();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

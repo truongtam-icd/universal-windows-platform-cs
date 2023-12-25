@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
@@ -16,11 +17,12 @@
             <RelativePanel
                 Margin="{StaticResource MarginHeader}">
                 <StackPanel x:Name="NewOrder">
-                    <TextBlock>CompanyId</TextBlock>
-                    <TextBox
+                    <controls:NumberBox
                         x:Name="CompanyId"
-                        TextChanged="CompanyIdText"></TextBox>
-                    <TextBlock>ShipperName</TextBlock>
+                        Header="CompanyId"
+                        Value="NaN"
+                        PlaceholderText=""
+                        AcceptsExpression="True" ValueChanged="CompanyIdValue" />
                     <TextBox
                         x:Name="ShipperName"
                         TextChanged="ShipperNameText"></TextBox>

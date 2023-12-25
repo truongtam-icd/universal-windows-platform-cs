@@ -18,14 +18,14 @@
                 <StackPanel x:Name="NewProduct">
                     <TextBlock>ProductName</TextBlock>
                     <TextBox
-            x:Name="ProductName"
-            TextChanged="ProductNameText"></TextBox>
+                        x:Name="ProductName"
+                        TextChanged="ProductNameText"></TextBox>
                     <TextBlock>Total</TextBlock>
                     <TextBox
-            x:Name="Total"
-            TextChanged="TotalText"></TextBox>
+                        x:Name="Total"
+                        TextChanged="TotalText"></TextBox>
                     <Button
-            Command="{x:Bind ViewModel.CreateProductCommand}">
+                        Command="{x:Bind ViewModel.CreateProductCommand}">
                         Create
                     </Button>
                 </StackPanel>

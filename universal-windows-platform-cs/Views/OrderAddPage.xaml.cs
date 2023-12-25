@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Controls;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.ViewModels;
 
@@ -10,30 +10,26 @@ namespace universal_windows_platform_cs.Views
     {
         public OrderAddViewModel ViewModel { get; } = new OrderAddViewModel();
 
-        public static Order OrderItem { get; set; } = new Order();
+        public static Order OrderItem { get; set; }
 
         public OrderAddPage()
         {
             InitializeComponent();
-        }
-
-        private void CompanyIdText(object sender, TextChangedEventArgs e)
-        {
-            TextBox CompanyId = (TextBox)sender;
-            try
-            {
-                OrderItem.CompanyId = Int32.Parse(CompanyId.Text);
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine($"Unable to parse '{CompanyId}'");
-            }
+            OrderItem = new Order();
         }
 
         private void ShipperNameText(object sender, TextChangedEventArgs e)
         {
             TextBox ShipperName = (TextBox)sender;
             OrderItem.ShipperName = ShipperName.Text;
+        }
+
+        private void CompanyIdValue(NumberBox sender, NumberBoxValueChangedEventArgs args)
+        {
+            if (args.NewValue > 0)
+            {
+                OrderItem.CompanyId = (int)args.NewValue;
+            }
         }
     }
 }
