@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,6 +34,40 @@ namespace universal_windows_platform_cs.Core.Services
                         db.SaveChanges();
                         return true;
                     } 
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return false;
+                }
+            }
+        }
+
+        public static async Task<bool> UpdateByOrderId(long OrderId)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    Order OldOrder = (Order)db.Order.Where(order => order.OrderId == OrderId).First();
+                    long OrderTotal = 0;
+                    if (OldOrder != null)
+                    {
+                        List<Product> _Product = db.Product.Where(product => product.OrderId == OrderId).ToList();
+                        foreach (Product item in _Product)
+                        {
+                            OrderTotal += (long)item.Total;
+                        }
+                        OldOrder.OrderTotal = OrderTotal;
+                        db.Order.Update(OldOrder);
+                        db.SaveChanges();
+                        return true;
+                    }
                     else
                     {
                         return false;
@@ -93,6 +128,44 @@ namespace universal_windows_platform_cs.Core.Services
                             CompanyName = info.Company.CompanyName
                         })
                         .ToList();
+                    return Order;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return null;
+                }
+            }
+        }
+
+        public static async Task<OrderInfo> GetByOrderId(long OrderId)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    OrderInfo Order = db.Order
+                        .Where(order => true)
+                        .OrderBy(order => order.OrderId)
+                        .Join(db.Company, order => order.CompanyId, company => company.CompanyId,
+                            (order, company) => new { Order = order, Company = company })
+                        .Select(info => new OrderInfo()
+                        {
+                            OrderId = info.Order.OrderId,
+                            CompanyId = info.Order.CompanyId,
+                            OrderDate = info.Order.OrderDate,
+                            RequiredDate = info.Order.RequiredDate,
+                            ShippedDate = info.Order.ShippedDate,
+                            ShipperName = info.Order.ShipperName,
+                            ShipperPhone = info.Order.ShipperPhone,
+                            OrderTotal = info.Order.OrderTotal,
+                            Details = info.Order.Details,
+                            Freight = info.Order.Freight,
+                            ShipTo = info.Order.ShipTo,
+                            Status = info.Order.Status,
+                            CompanyName = info.Company.CompanyName
+                        }).First();
                     return Order;
                 }
                 catch (Exception ex)

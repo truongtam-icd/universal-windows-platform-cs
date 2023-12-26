@@ -71,6 +71,7 @@
                     <controls:DataGridTextColumn
                         x:Name="OrderTotal"
                         Binding="{Binding OrderTotal}"
+                        IsReadOnly="True"
                         Header="OrderTotal" />
                     
                     <controls:DataGridComboBoxColumn

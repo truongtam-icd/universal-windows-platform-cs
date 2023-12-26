@@ -27,22 +27,39 @@
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                 HorizontalScrollBarVisibility="Visible"
-                Margin="{StaticResource MarginHeader}">
+                Margin="0,48,0,100"
+                CellEditEnded="UpdateProductData" >
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Binding="{Binding ProductId}" Header="ProductId" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding ProductName}" Header="ProductName" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding CategoryName}" Header="CategoryName" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding Total}" Header="Total" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding Quantity}" Header="Quantity" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding QuantityPerUnit}" Header="QuantityPerUnit" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding UnitPrice}" Header="UnitPrice" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding CategoryDescription}" Header="CategoryDescription" IsReadOnly="True" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding ProductId}"
+                        Header="ProductId"
+                        IsReadOnly="True" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding ProductName}"
+                        Header="ProductName" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding Quantity}"
+                        Header="Quantity" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding UnitPrice}"
+                        Header="UnitPrice" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding Total}"
+                        Header="Total"
+                        IsReadOnly="True"/>
+                    <controls:DataGridTextColumn
+                        Binding="{Binding CategoryName}"
+                        Header="CategoryName" />
+                    <controls:DataGridTextColumn
+                        Binding="{Binding CategoryDescription}"
+                        Header="CategoryDescription" />
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
             <Button
-                Command="{x:Bind ViewModel.ProductAddPageProductCommand}">
-                Add Product
-            </Button>
+                Command="{x:Bind ViewModel.ProductAddPageProductCommand}"
+                Margin="10,0,0,20"
+                VerticalAlignment="Bottom"
+                Content="Add Product" />
         </Grid>
     </Grid>
 </Page>

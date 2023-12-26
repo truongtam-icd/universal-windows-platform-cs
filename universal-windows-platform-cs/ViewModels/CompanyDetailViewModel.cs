@@ -29,24 +29,23 @@ namespace universal_windows_platform_cs.ViewModels
 
         public async Task InitializeAsync(long OrderId)
         {
-            var data = await DataService.GetContentGridDataAsync();
-            Order item = data.First(i => i.OrderId == OrderId);
+            var data = await OrderService.GetByOrderId(OrderId);
             Item = new CompanyDetailView()
             {
-                OrderId = item.OrderId,
-                CompanyId = item.CompanyId,
-                OrderDate = item.OrderDate,
-                RequiredDate = item.RequiredDate,
-                ShippedDate = item.ShippedDate,
-                ShipperName = item.ShipperName,
-                ShipperPhone = item.ShipperPhone,
-                Freight = item.Freight,
-                ShipTo = item.ShipTo,
-                SymbolCode = item.SymbolCode,
-                Status = item.Status,
-                OrderTotal = item.OrderTotal,
-                Details = item.Details,
-                Company = await DataService.GetCompanyNameAsync(item.CompanyId)
+                OrderId = data.OrderId,
+                CompanyId = data.CompanyId,
+                OrderDate = data.OrderDate,
+                RequiredDate = data.RequiredDate,
+                ShippedDate = data.ShippedDate,
+                ShipperName = data.ShipperName,
+                ShipperPhone = data.ShipperPhone,
+                Freight = data.Freight,
+                ShipTo = data.ShipTo,
+                SymbolCode = data.SymbolCode,
+                Status = data.Status,
+                OrderTotal = data.OrderTotal,
+                Details = data.Details,
+                Company = data.CompanyName
             };
         }
     }

@@ -13,7 +13,7 @@ namespace universal_windows_platform_cs.ViewModels
 
         public async Task LoadDataAsync()
         {
-            await DataService.GetGridDataAsync();
+            await CompanyService.GetAll();
         }
     }
 }

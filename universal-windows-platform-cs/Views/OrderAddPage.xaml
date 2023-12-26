@@ -103,6 +103,7 @@
                     </StackPanel>
                 </controls:TwoPaneView.Pane2>
             </controls:TwoPaneView>
+            
             <Button
                 Command="{x:Bind ViewModel.CreateOrderCommand}"
                 Content="Submit"

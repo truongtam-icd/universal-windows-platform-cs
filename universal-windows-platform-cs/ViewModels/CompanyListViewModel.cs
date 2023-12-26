@@ -34,7 +34,7 @@ namespace universal_windows_platform_cs.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await DataService.GetContentGridDataAsync();
+            var data = await OrderService.GetAll();
             foreach (var item in data)
             {
                 CompanyListView dataItem = new CompanyListView
@@ -52,7 +52,7 @@ namespace universal_windows_platform_cs.ViewModels
                     Status = item.Status,
                     OrderTotal = item.OrderTotal,
                     Details = item.Details,
-                    Company = await DataService.GetCompanyNameAsync(item.CompanyId)
+                    Company = item.CompanyName
                 };
                 Source.Add(dataItem);
             }

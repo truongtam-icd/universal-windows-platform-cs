@@ -46,5 +46,38 @@ namespace universal_windows_platform_cs.Core.Services
                 }
             }
         }
+
+        public static async Task<bool> Update(Product NewProduct)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    Product OldProduct = (Product)db.Product.Where(product => product.ProductId == NewProduct.ProductId).First();
+                    if (OldProduct != null)
+                    {
+                        OldProduct.ProductName = NewProduct.ProductName;
+                        OldProduct.Quantity = NewProduct.Quantity;
+                        OldProduct.UnitPrice = NewProduct.UnitPrice;
+                        OldProduct.CategoryName = NewProduct.CategoryName;
+                        OldProduct.CategoryDescription = NewProduct.CategoryDescription;
+                        OldProduct.Total = NewProduct.Quantity * NewProduct.UnitPrice;
+                        db.Product.Update(OldProduct);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return false;
+                }
+            }
+        }
     }
 }

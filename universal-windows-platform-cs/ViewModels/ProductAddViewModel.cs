@@ -12,14 +12,17 @@ namespace universal_windows_platform_cs.ViewModels
     public class ProductAddViewModel : ObservableObject
     {
         public ICommand CreateProductCommand { get; set; }
+        public string Total { get; set; }
         public ProductAddViewModel()
         {
             CreateProductCommand = new RelayCommand(CreateProduct);
+            Total = "0";
         }
 
         private static async void CreateProduct()
         {
             await ProductService.Add(ProductAddPage.ProductItem);
+            await OrderService.UpdateByOrderId(ProductAddPage.ProductItem.OrderId);
             NavigationService.Navigate<ProductListPage>(ProductAddPage.ProductItem.OrderId);
         }
     }
