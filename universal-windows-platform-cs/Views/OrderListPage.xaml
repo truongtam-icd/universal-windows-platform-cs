@@ -29,7 +29,7 @@
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                 CellEditEnded="UpdateOrderData"
                 HorizontalScrollBarVisibility="Visible"
-                Margin="{StaticResource MarginHeader}">
+                Margin="0,48,0,85">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn.CellTemplate>
@@ -47,37 +47,46 @@
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
-                    <controls:DataGridTextColumn Binding="{Binding OrderId}" Header="OrderId" IsReadOnly="True" />
+                    
+                    <controls:DataGridTextColumn
+                        Binding="{Binding OrderId}"
+                        Header="OrderId"
+                        IsReadOnly="True" />
+                    
                     <controls:DataGridTextColumn
                         Binding="{Binding OrderDate, Converter={StaticResource conv}}"
                         Header="OrderDate"
                         IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" IsReadOnly="True" />
-                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" IsReadOnly="True" />
-                    <controls:DataGridTextColumn x:Name="OrderTotal" Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                    
+                    <controls:DataGridTextColumn
+                        Binding="{Binding Company}"
+                        Header="Company"
+                        IsReadOnly="True" />
+                    
+                    <controls:DataGridTextColumn
+                        Binding="{Binding ShipTo}"
+                        Header="ShipTo"
+                        IsReadOnly="True" />
+                    
+                    <controls:DataGridTextColumn
+                        x:Name="OrderTotal"
+                        Binding="{Binding OrderTotal}"
+                        Header="OrderTotal" />
+                    
                     <controls:DataGridComboBoxColumn
                         x:Name="Status"
                         Header="Status"
                         Binding="{Binding Status}"
                         ItemsSource="{x:Bind ViewModel.OrderStatus, Mode=OneWay}" />
-                    <controls:DataGridTemplateColumn Header="Symbol">
-                        <controls:DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate x:DataType="models:OrderListView">
-                                <FontIcon
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="{x:Bind Symbol}" />
-                            </DataTemplate>
-                        </controls:DataGridTemplateColumn.CellTemplate>
-                    </controls:DataGridTemplateColumn>
+                    
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
+            
             <Button
                 Command="{x:Bind ViewModel.CreateOrderCommand}"
-                >
-                Add Order
-            </Button>
+                Margin="10,0,0,20"
+                VerticalAlignment="Bottom"
+                Content="Add Order" />
         </Grid>
     </Grid>
 </Page>

@@ -30,7 +30,9 @@
     <Thickness x:Key="XXSmallTopRightBottomMargin">0, 4, 4, 4</Thickness>
     <!--ListDetails size margins-->
     <Thickness x:Key="DetailPageMargin">52,40,52,0</Thickness>
-
+    <!--Custome for header-->
     <Thickness x:Key="MarginHeader">0,48,0,-48</Thickness>
     <Thickness x:Key="OffsetHeader">0,28,0,-28</Thickness>
+    <!--SmallLeftTopMarginDatePicker-->
+    <Thickness x:Key="SmallLeftTopMarginDatePicker">0, 17, 0, 0</Thickness>
 </ResourceDictionary>

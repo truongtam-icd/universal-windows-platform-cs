@@ -19,6 +19,13 @@ https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudi
 ```
 
 
+## Microsoft Store
+```bash
+https://apps.microsoft.com/detail/9P3JFPWWDZRC?hl=en-us&gl=US
+https://apps.microsoft.com/detail/9NBLGGH4TLCQ?hl=en-us&gl=US
+```
+
+
 ## How to setup?
 
 ![Alt text](./images/visual_studio_installer.png)
@@ -27,6 +34,7 @@ Open application:
   Visual Studio Installer
   import ~\project\.vsconfig
 ```
+
 
 ## Migration
 
@@ -39,11 +47,6 @@ https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migratio
 https://www.npgsql.org/efcore/index.html
 ```
 
-Microsoft Store
-```bash
-https://apps.microsoft.com/detail/9P3JFPWWDZRC?hl=en-us&gl=US
-https://apps.microsoft.com/detail/9NBLGGH4TLCQ?hl=en-us&gl=US
-```
 
 ### What is Package Manager Console?
 ![Alt text](./images/console.png)

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:loading="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
@@ -14,24 +15,101 @@
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
-            <RelativePanel
-                Margin="{StaticResource MarginHeader}">
-                <StackPanel x:Name="NewOrder">
-                    <controls:NumberBox
-                        x:Name="CompanyId"
-                        Header="CompanyId"
-                        Value="NaN"
-                        PlaceholderText=""
-                        AcceptsExpression="True" ValueChanged="CompanyIdValue" />
-                    <TextBox
-                        x:Name="ShipperName"
-                        TextChanged="ShipperNameText"></TextBox>
-                    <Button
-                        Command="{x:Bind ViewModel.CreateOrderCommand}">
-                        Create
-                    </Button>
-                </StackPanel>
-            </RelativePanel>
+            <loading:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
+                <!-- Loading screen content -->
+                Loading ...
+            </loading:Loading>
+            
+            <controls:TwoPaneView
+                x:Name="NewOrder"
+                Margin="0,48,0,100" >
+                <controls:TwoPaneView.Pane1>
+                    <StackPanel
+                        Width="450" >
+                        <ComboBox
+                            x:Name="Company"
+                            Header="Company"
+                            Margin="{StaticResource SmallTopMargin}"
+                            ItemsSource="{x:Bind ViewModel.CompanyName, Mode=OneWay}"
+                            Width="450"
+                            SelectionChanged="CompanyChanged" />
+
+                        <TextBox
+                            x:Name="ShipperName"
+                            Header="ShipperName"
+                            Margin="{StaticResource SmallTopMargin}"
+                            Width="450"
+                            TextChanged="ShipperNameText" />
+
+                        <controls:NumberBox
+                            x:Name="ShipperPhone"
+                            Header="ShipperPhone"
+                            Margin="{StaticResource SmallTopMargin}"
+                            Width="450"
+                            ValueChanged="ShipperPhoneChanged" />
+                        
+                        <controls:NumberBox
+                            x:Name="Freight"
+                            Header="Freight"
+                            Value="NaN"
+                            PlaceholderText=""
+                            AcceptsExpression="True"
+                            Margin="{StaticResource SmallTopMargin}"
+                            Width="450"
+                            ValueChanged="FreightChanged" />
+
+                        <controls:NumberBox
+                            x:Name="OrderTotal"
+                            Header="OrderTotal"
+                            Value="NaN"
+                            PlaceholderText=""
+                            AcceptsExpression="True"
+                            Margin="{StaticResource SmallTopMargin}"
+                            Width="450"
+                            ValueChanged="OrderTotalChanged" />
+
+                        <TextBox
+                            x:Name="ShipTo"
+                            Header="ShipTo"
+                            Text="{x:Bind ViewModel.ShipTo}"
+                            Margin="{StaticResource SmallTopMargin}"
+                            Width="450"
+                            TextChanged="ShipToText" />
+                    </StackPanel>
+                </controls:TwoPaneView.Pane1>
+
+                <controls:TwoPaneView.Pane2>
+                    <StackPanel Width="450" >
+                        <DatePicker
+                            x:Name="OrderDate"
+                            Header="OrderDate"
+                            Margin="{StaticResource SmallLeftTopMarginDatePicker}"
+                            Width="450"
+                            SelectedDateChanged="OrderDateChanged" />
+
+                        <DatePicker
+                            x:Name="RequiredDate"
+                            Header="RequiredDate"
+                            Margin="{StaticResource SmallLeftTopMarginDatePicker}"
+                            Width="450"
+                            SelectedDateChanged="RequiredDateChanged" />
+
+                        <DatePicker
+                            x:Name="ShippedDate"
+                            Header="ShippedDate"
+                            Margin="{StaticResource SmallLeftTopMarginDatePicker}"
+                            Width="450"
+                            SelectedDateChanged="ShippedDateChanged" />
+                    </StackPanel>
+                </controls:TwoPaneView.Pane2>
+            </controls:TwoPaneView>
+            <Button
+                Command="{x:Bind ViewModel.CreateOrderCommand}"
+                Content="Submit"
+                Margin="0,0,0,20"
+                Width="450"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </Page>

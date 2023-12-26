@@ -14,13 +14,13 @@ namespace universal_windows_platform_cs.ViewModels
 {
     public class ProductListViewModel : ObservableObject
     {
-        private ICommand _newProductCommand;
-        public ICommand ProductAddPageProductCommand => _newProductCommand ?? (_newProductCommand = new RelayCommand(PageNewProduct));
+        public ICommand ProductAddPageProductCommand { get; set; }
         public ObservableCollection<Product> Source { get; } = new ObservableCollection<Product>();
         public static long OrderId { get; set; }
 
         public ProductListViewModel()
         {
+            ProductAddPageProductCommand = new RelayCommand(PageNewProduct);
         }
 
         public async Task InitializeAsync(long OrderId)

@@ -9,6 +9,7 @@ using universal_windows_platform_cs.Core.Services;
 // using Logger;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
 
 namespace universal_windows_platform_cs.Views
 {
@@ -21,6 +22,15 @@ namespace universal_windows_platform_cs.Views
             InitializeComponent();
             // Debug.WriteLine(Logging.LogPath);
             // Logging.Info("Insert logging to file!");
+            LoadingControl.IsLoading = true;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await Task.Delay(100);
+            await ViewModel.LoadDataAsync();
+            LoadingControl.IsLoading = false;
         }
     }
 }

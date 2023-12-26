@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using universal_windows_platform_cs.Core.Models;
 using UWPApp.PostgreSQL;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace universal_windows_platform_cs.Core.Services
 {
+    public class OrderInfo : Order
+    {
+        public string CompanyName { get; set; }
+    }
+
     public static class OrderService
     {
         public static async Task<bool> Update(Order NewOrder)
@@ -57,9 +65,42 @@ namespace universal_windows_platform_cs.Core.Services
             }
         }
 
-        public static Task Add(Product productItem)
+        public static async Task<List<OrderInfo>> GetAll()
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    List<OrderInfo> Order = db.Order
+                        .Where(order => true)
+                        .OrderBy(order => order.OrderId)
+                        .Join(db.Company, order => order.CompanyId, company => company.CompanyId, 
+                            (order, company) => new { Order = order, Company = company })
+                        .Select(info => new OrderInfo() {
+                            OrderId = info.Order.OrderId,
+                            CompanyId = info.Order.CompanyId,
+                            OrderDate = info.Order.OrderDate,
+                            RequiredDate = info.Order.RequiredDate,
+                            ShippedDate = info.Order.ShippedDate,
+                            ShipperName = info.Order.ShipperName,
+                            ShipperPhone = info.Order.ShipperPhone,
+                            OrderTotal = info.Order.OrderTotal,
+                            Details = info.Order.Details,
+                            Freight = info.Order.Freight,
+                            ShipTo = info.Order.ShipTo,
+                            Status = info.Order.Status,
+                            CompanyName = info.Company.CompanyName
+                        })
+                        .ToList();
+                    return Order;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return null;
+                }
+            }
         }
     }
 }

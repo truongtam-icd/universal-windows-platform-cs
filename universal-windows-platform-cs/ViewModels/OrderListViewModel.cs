@@ -13,8 +13,12 @@ namespace universal_windows_platform_cs.ViewModels
     public class OrderListView : Order
     {
         public string Company { get; set; }
-        private ICommand _navigateCommand;
-        public ICommand NavigateCommand => _navigateCommand ?? (_navigateCommand = new RelayCommand<long>(ViewProductPage));
+        public ICommand NavigateCommand { get; set; }
+
+        public OrderListView()
+        {
+            NavigateCommand = new RelayCommand<long>(ViewProductPage);
+        }
 
         private static void ViewProductPage(long OrderId)
         {
@@ -27,8 +31,7 @@ namespace universal_windows_platform_cs.ViewModels
 
     public class OrderListViewModel : ObservableObject
     {
-        private ICommand _newOrderCommand;
-        public ICommand CreateOrderCommand => _newOrderCommand ?? (_newOrderCommand = new RelayCommand(CreateOrder));
+        public ICommand CreateOrderCommand { get; set; }
         public ObservableCollection<OrderListView> Source { get; } = new ObservableCollection<OrderListView>();
         public ObservableCollection<string> OrderStatus { get; set; } = new ObservableCollection<string> {
             "Available", "Delivered", "Shipped"
@@ -36,6 +39,7 @@ namespace universal_windows_platform_cs.ViewModels
 
         public OrderListViewModel()
         {
+            CreateOrderCommand = new RelayCommand(CreateOrder);
         }
 
         public async Task LoadDataAsync()
@@ -43,7 +47,7 @@ namespace universal_windows_platform_cs.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await DataService.GetGridDataAsync();
+            var data = await OrderService.GetAll();
 
             foreach (var item in data)
             {
@@ -62,7 +66,7 @@ namespace universal_windows_platform_cs.ViewModels
                     Status = item.Status,
                     OrderTotal = item.OrderTotal,
                     Details = item.Details,
-                    Company = await DataService.GetCompanyNameAsync(item.CompanyId)
+                    Company = item.CompanyName
                 };
                 Source.Add(dataItem);
             }

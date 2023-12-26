@@ -20,14 +20,13 @@ namespace universal_windows_platform_cs.ViewModels
 
     public class CompanyListViewModel : ObservableObject
     {
-        private ICommand _itemClickCommand;
-
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<CompanyListView>(OnItemClick));
+        public ICommand ItemClickCommand { get; set; }
 
         public ObservableCollection<CompanyListView> Source { get; } = new ObservableCollection<CompanyListView> ();
 
         public CompanyListViewModel()
         {
+            ItemClickCommand = new RelayCommand<CompanyListView>(OnItemClick);
         }
 
         public async Task LoadDataAsync()

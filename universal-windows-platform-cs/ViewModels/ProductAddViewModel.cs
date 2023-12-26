@@ -11,11 +11,10 @@ namespace universal_windows_platform_cs.ViewModels
 {
     public class ProductAddViewModel : ObservableObject
     {
-        private ICommand _createProductCommand;
-        public ICommand CreateProductCommand => _createProductCommand ?? (_createProductCommand = new RelayCommand(CreateProduct));
+        public ICommand CreateProductCommand { get; set; }
         public ProductAddViewModel()
         {
-
+            CreateProductCommand = new RelayCommand(CreateProduct);
         }
 
         private static async void CreateProduct()
