@@ -53,10 +53,27 @@
                     <controls:DataGridTextColumn
                         Binding="{Binding CategoryDescription}"
                         Header="CategoryDescription" />
+                    <controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Command="{Binding RemoveProductCommand}"
+                                    CommandParameter="{Binding ProductId}"
+                                    Click="ReloadPage" >
+                                    <FontIcon
+                                        Margin="{StaticResource SmallLeftRightMargin}"
+                                        HorizontalAlignment="Left"
+                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                        Glyph="&#xE74D;"
+                                    />  
+                                </Button>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
             <Button
-                Command="{x:Bind ViewModel.ProductAddPageProductCommand}"
+                Command="{x:Bind ViewModel.AddProductCommand}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Bottom"
                 Content="Add Product" />

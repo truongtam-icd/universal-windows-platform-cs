@@ -41,6 +41,10 @@ namespace universal_windows_platform_cs.Views
                 Company _Company = await ViewModel.InfoCompany(CompanyName);
                 OrderItem.CompanyId = _Company.CompanyId;
                 ShipTo.Text = $"{CompanyName} {_Company.Address}, {_Company.City}, {_Company.Country}";
+                OrderItem.OrderTotal = 0;
+                OrderItem.OrderDate = System.DateTime.Now;
+                OrderItem.RequiredDate = System.DateTime.Now;
+                OrderItem.ShippedDate = System.DateTime.Now;
             }
         }
 
@@ -66,27 +70,32 @@ namespace universal_windows_platform_cs.Views
             OrderItem.Freight = args.NewValue;
         }
 
-        private void OrderTotalChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
-        {
-            OrderItem.OrderTotal = args.NewValue;
-        }
-
         private void OrderDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
         {
             DatePicker DatePickerOrderDate = (DatePicker)sender;
-            OrderItem.OrderDate = DatePickerOrderDate.SelectedDate.Value.DateTime;
+            Debug.WriteLine($"OrderDateChanged {DatePickerOrderDate.SelectedDate.Value}");
+            if (DatePickerOrderDate.SelectedDate.HasValue)
+            {
+                OrderItem.OrderDate = DatePickerOrderDate.SelectedDate.Value.DateTime;
+            }
         }
 
         private void RequiredDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
         {
             DatePicker DatePickerRequiredDate = (DatePicker)sender;
-            OrderItem.RequiredDate = DatePickerRequiredDate.SelectedDate.Value.DateTime;
+            if (DatePickerRequiredDate.SelectedDate.HasValue)
+            {
+                OrderItem.RequiredDate = DatePickerRequiredDate.SelectedDate.Value.DateTime;
+            }
         }
 
         private void ShippedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
         {
             DatePicker DatePickerShippedDate = (DatePicker)sender;
-            OrderItem.ShippedDate = DatePickerShippedDate.SelectedDate.Value.DateTime;
+            if (DatePickerShippedDate.SelectedDate.HasValue)
+            {
+                OrderItem.ShippedDate = DatePickerShippedDate.SelectedDate.Value.DateTime;
+            }
         }
     }
 }

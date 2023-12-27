@@ -14,10 +14,12 @@ namespace universal_windows_platform_cs.ViewModels
     {
         public string Company { get; set; }
         public ICommand NavigateCommand { get; set; }
+        public ICommand RemoveOrderCommand { get; set; }
 
         public OrderListView()
         {
             NavigateCommand = new RelayCommand<long>(ViewProductPage);
+            RemoveOrderCommand = new RelayCommand<long>(RemoveOrder);
         }
 
         private static void ViewProductPage(long OrderId)
@@ -26,6 +28,11 @@ namespace universal_windows_platform_cs.ViewModels
             {
                 NavigationService.Navigate<ProductListPage>(OrderId);
             }
+        }
+
+        private static async void RemoveOrder(long OrderId)
+        {
+            await OrderService.Remove(OrderId);
         }
     }
 

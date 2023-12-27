@@ -58,16 +58,6 @@
                             Width="450"
                             ValueChanged="FreightChanged" />
 
-                        <controls:NumberBox
-                            x:Name="OrderTotal"
-                            Header="OrderTotal"
-                            Value="NaN"
-                            PlaceholderText=""
-                            AcceptsExpression="True"
-                            Margin="{StaticResource SmallTopMargin}"
-                            Width="450"
-                            ValueChanged="OrderTotalChanged" />
-
                         <TextBox
                             x:Name="ShipTo"
                             Header="ShipTo"

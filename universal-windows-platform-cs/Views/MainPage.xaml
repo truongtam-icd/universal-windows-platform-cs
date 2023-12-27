@@ -19,6 +19,12 @@
                 <!-- Loading screen content -->
                 Loading ...
             </controls:Loading>
+
+            <controls:Loading IsLoading="True">
+                <TextBlock
+                    Text="Welcome!"
+                    FontSize="{StaticResource LargeFontSize}" />
+            </controls:Loading>
         </Grid>
     </Grid>
 </Page>

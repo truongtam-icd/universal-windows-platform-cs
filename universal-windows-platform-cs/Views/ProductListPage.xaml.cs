@@ -1,11 +1,12 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
 using universal_windows_platform_cs.Services;
 using universal_windows_platform_cs.ViewModels;
-
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -42,6 +43,14 @@ namespace universal_windows_platform_cs.Views
                 await OrderService.UpdateByOrderId(UpdateProduct.OrderId);
                 await ViewModel.InitializeAsync(UpdateProduct.OrderId);
             }
+        }
+
+        private async void ReloadPage(object sender, RoutedEventArgs e)
+        {
+            LoadingControl.IsLoading = true;
+            await Task.Delay(1000);
+            await ViewModel.InitializeAsync(ProductListViewModel.OrderId);
+            LoadingControl.IsLoading = false;
         }
     }
 }

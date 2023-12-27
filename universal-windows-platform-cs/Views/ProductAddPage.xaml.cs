@@ -21,6 +21,7 @@ namespace universal_windows_platform_cs.Views
             InitializeComponent();
             ProductItem = new Product();
             ProductItem.QuantityPerUnit = "0";
+            LoadingControl.IsLoading = true;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -30,6 +31,7 @@ namespace universal_windows_platform_cs.Views
             {
                 ProductItem.OrderId = OrderId;
             }
+            LoadingControl.IsLoading = false;
         }
 
         private void ProductNameText(object sender, TextChangedEventArgs e)

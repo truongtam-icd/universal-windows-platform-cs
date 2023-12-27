@@ -80,6 +80,23 @@
                         Binding="{Binding Status}"
                         ItemsSource="{x:Bind ViewModel.OrderStatus, Mode=OneWay}" />
                     
+                    <controls:DataGridTemplateColumn>
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Command="{Binding RemoveOrderCommand}"
+                                    CommandParameter="{Binding OrderId}"
+                                    Click="ReloadPage" >
+                                    <FontIcon
+                                        Margin="{StaticResource SmallLeftRightMargin}"
+                                        HorizontalAlignment="Left"
+                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                        Glyph="&#xE74D;"
+                                    />
+                                </Button>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
             

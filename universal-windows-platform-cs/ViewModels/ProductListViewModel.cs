@@ -12,15 +12,31 @@ using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
+    public class ProductList : Product
+    {
+        public ICommand RemoveProductCommand { get; set; }
+
+        public ProductList()
+        {
+            RemoveProductCommand = new RelayCommand<long>(RemoveProduct);
+        }
+
+        private static async void RemoveProduct(long ProductId)
+        {
+            await ProductService.Remove(ProductId);
+            await OrderService.UpdateByOrderId(ProductListViewModel.OrderId);
+        }
+    }
+
     public class ProductListViewModel : ObservableObject
     {
-        public ICommand ProductAddPageProductCommand { get; set; }
-        public ObservableCollection<Product> Source { get; } = new ObservableCollection<Product>();
+        public ICommand AddProductCommand { get; set; }
+        public ObservableCollection<ProductList> Source { get; } = new ObservableCollection<ProductList>();
         public static long OrderId { get; set; }
 
         public ProductListViewModel()
         {
-            ProductAddPageProductCommand = new RelayCommand(PageNewProduct);
+            AddProductCommand = new RelayCommand(PageNewProduct);
         }
 
         public async Task InitializeAsync(long OrderId)
@@ -31,7 +47,19 @@ namespace universal_windows_platform_cs.ViewModels
             List<Product> data = await ProductService.GetByOrderId(OrderId);
             foreach (var item in data)
             {
-                Source.Add(item);
+                ProductList productList = new ProductList() {
+                    ProductId = item.ProductId,
+                    ProductName = item.ProductName,
+                    CategoryName = item.CategoryName,
+                    CategoryDescription = item.CategoryDescription,
+                    OrderId = item.OrderId,
+                    Quantity = item.Quantity,
+                    QuantityPerUnit = item.QuantityPerUnit,
+                    Total = item.Total,
+                    UnitPrice = item.UnitPrice,
+                    Discount = item.Discount
+                };
+                Source.Add(productList);
             }
         }
         private static void PageNewProduct()

@@ -175,5 +175,36 @@ namespace universal_windows_platform_cs.Core.Services
                 }
             }
         }
+
+        public static async Task<bool> Remove(long OrderId)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    List<Product> _Product = db.Product.Where(product => product.OrderId == OrderId).ToList();
+                    if (_Product != null)
+                    {
+                        foreach (var item in _Product)
+                        {
+                            db.Product.Remove(item);
+                        }
+                    }
+                    Order _Order = db.Order.Where(order => order.OrderId == OrderId).FirstOrDefault();
+                    if (_Order != null)
+                    {
+                        db.Order.Remove(_Order);
+                    }
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return false;
+                }
+            }
+        }
     }
 }

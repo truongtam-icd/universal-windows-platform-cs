@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
+using Windows.UI.Xaml;
 
 namespace universal_windows_platform_cs.Views
 {
@@ -34,6 +35,14 @@ namespace universal_windows_platform_cs.Views
             {
                 await OrderService.Update(UpdateOrder);
             }
+        }
+
+        private async void ReloadPage(object sender, RoutedEventArgs e)
+        {
+            LoadingControl.IsLoading = true;
+            await Task.Delay(1000);
+            await ViewModel.LoadDataAsync();
+            LoadingControl.IsLoading = false;
         }
     }
 }
