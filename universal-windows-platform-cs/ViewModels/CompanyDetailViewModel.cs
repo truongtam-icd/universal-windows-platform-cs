@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-
+using Microsoft.Toolkit.Mvvm.Input;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
+using universal_windows_platform_cs.Services;
+using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
@@ -16,9 +18,11 @@ namespace universal_windows_platform_cs.ViewModels
     public class CompanyDetailViewModel : ObservableObject
     {
         public CompanyDetailView Item { get; set; }
+        public ICommand RemoveCompnayCommand { get; set; }
 
         public CompanyDetailViewModel()
         {
+            RemoveCompnayCommand = new RelayCommand<int>(RemoveCompany);
         }
 
         public async Task InitializeAsync(int CompanyId)
@@ -39,6 +43,12 @@ namespace universal_windows_platform_cs.ViewModels
                 Phone = data.Phone,
                 FullAddress = $"{data.ContactName} {data.Address}, {data.City}, {data.Country}"
             };
+        }
+
+        private async void RemoveCompany(int CompnayId)
+        {
+            await CompanyService.Remove(CompnayId);
+            NavigationService.Navigate<CompanyListPage>();
         }
     }
 }

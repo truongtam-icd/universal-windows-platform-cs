@@ -62,14 +62,14 @@
                         Text="{x:Bind ViewModel.Item.CompanyName, Mode=OneWay}" />
 
                     <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
-                        <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
+                        <StackPanel x:Name="contactGroup" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="ContactTitle" />
                             <TextBlock
                                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                                 Text="{x:Bind ViewModel.Item.ContactTitle}" />
                         </StackPanel>
 
-                        <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
+                        <StackPanel x:Name="faxGroup" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Fax" />
                             <TextBlock
                                 Style="{StaticResource DetailBodyBaseMediumStyle}"
@@ -78,18 +78,28 @@
                     </StackPanel>
 
                     <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
-                        <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
+                        <StackPanel x:Name="addressGroup" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Address" />
                             <TextBlock
                                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                                 Text="{x:Bind ViewModel.Item.FullAddress}" />
                         </StackPanel>
 
-                        <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
+                        <StackPanel x:Name="phoneGroup" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Phone" />
                             <TextBlock
                                 Style="{StaticResource DetailBodyBaseMediumStyle}"
                                 Text="{x:Bind ViewModel.Item.Phone}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel x:Name="propertiesGroup3" RelativePanel.Below="propertiesGroup2">
+                        <StackPanel x:Name="functionGroup" Margin="210,10,0,0">
+                            <Button
+                                Command="{x:Bind ViewModel.RemoveCompnayCommand}"
+                                CommandParameter="{x:Bind ViewModel.Item.CompanyId}" >
+                                <FontIcon Glyph="&#xE74D;" />
+                            </Button>
                         </StackPanel>
                     </StackPanel>
 
