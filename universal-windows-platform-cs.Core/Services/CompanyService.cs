@@ -64,5 +64,24 @@ namespace universal_windows_platform_cs.Core.Services
                 }
             }
         }
+
+        public static async Task<bool> Add(Company Company)
+        {
+            await Task.CompletedTask;
+            using (var db = new UWPContext())
+            {
+                try
+                {
+                    db.Company.Add(Company);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    return false;
+                }
+            }
+        }
     }
 }

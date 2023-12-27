@@ -69,7 +69,6 @@ namespace universal_windows_platform_cs.ViewModels
                     ShipperPhone = item.ShipperPhone,
                     Freight = item.Freight,
                     ShipTo = item.ShipTo,
-                    SymbolCode = item.SymbolCode,
                     Status = item.Status,
                     OrderTotal = item.OrderTotal,
                     Details = item.Details,

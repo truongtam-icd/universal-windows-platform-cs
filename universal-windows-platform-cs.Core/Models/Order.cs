@@ -27,10 +27,6 @@ namespace universal_windows_platform_cs.Core.Models
 
         public string Status { get; set; }
 
-        public char Symbol => (char)SymbolCode;
-
-        public int SymbolCode { get; set; }
-
         public ICollection<Product> Details { get; set; }
 
         public override string ToString()

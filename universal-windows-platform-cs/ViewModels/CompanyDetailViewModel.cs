@@ -8,44 +8,36 @@ using universal_windows_platform_cs.Core.Services;
 
 namespace universal_windows_platform_cs.ViewModels
 {
-    public class CompanyDetailView : Order
+    public class CompanyDetailView : Company
     {
-        public string Company { get; set; }
+        public string FullAddress { get; set; }
     }
 
     public class CompanyDetailViewModel : ObservableObject
     {
-        private CompanyDetailView _item;
-
-        public CompanyDetailView Item
-        {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
-        }
+        public CompanyDetailView Item { get; set; }
 
         public CompanyDetailViewModel()
         {
         }
 
-        public async Task InitializeAsync(long OrderId)
+        public async Task InitializeAsync(int CompanyId)
         {
-            var data = await OrderService.GetByOrderId(OrderId);
+            var data = await CompanyService.GetByCompanyId(CompanyId);
             Item = new CompanyDetailView()
             {
-                OrderId = data.OrderId,
                 CompanyId = data.CompanyId,
-                OrderDate = data.OrderDate,
-                RequiredDate = data.RequiredDate,
-                ShippedDate = data.ShippedDate,
-                ShipperName = data.ShipperName,
-                ShipperPhone = data.ShipperPhone,
-                Freight = data.Freight,
-                ShipTo = data.ShipTo,
-                SymbolCode = data.SymbolCode,
-                Status = data.Status,
-                OrderTotal = data.OrderTotal,
-                Details = data.Details,
-                Company = data.CompanyName
+                CompanyName = data.CompanyName,
+                Address = data.Address,
+                City = data.City,
+                Country = data.Country,
+                ContactName = data.ContactName,
+                PostalCode = data.PostalCode,
+                Fax = data.Fax,
+                ContactTitle = data.ContactTitle,
+                Orders = data.Orders,
+                Phone = data.Phone,
+                FullAddress = $"{data.ContactName} {data.Address}, {data.City}, {data.Country}"
             };
         }
     }

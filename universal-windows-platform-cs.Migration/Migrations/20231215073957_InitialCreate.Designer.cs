@@ -97,9 +97,6 @@ namespace universalwindowsplatformcs.Migration.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<int>("SymbolCode")
-                        .HasColumnType("integer");
-
                     b.HasKey("OrderId");
 
                     b.HasIndex("CompanyId");

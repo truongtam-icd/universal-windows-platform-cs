@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,9 +14,9 @@ using universal_windows_platform_cs.Views;
 
 namespace universal_windows_platform_cs.ViewModels
 {
-    public class CompanyListView : Order
+    public class CompanyListView : Company
     {
-        public string Company { get; set; }
+        public string Symbol { get; set; }
     }
 
     public class CompanyListViewModel : ObservableObject
@@ -34,36 +35,34 @@ namespace universal_windows_platform_cs.ViewModels
             Source.Clear();
 
             // Replace this with your actual data
-            var data = await OrderService.GetAll();
+            var data = await CompanyService.GetAll();
             foreach (var item in data)
             {
                 CompanyListView dataItem = new CompanyListView
                 {
-                    OrderId = item.OrderId,
                     CompanyId = item.CompanyId,
-                    OrderDate = item.OrderDate,
-                    RequiredDate = item.RequiredDate,
-                    ShippedDate = item.ShippedDate,
-                    ShipperName = item.ShipperName,
-                    ShipperPhone = item.ShipperPhone,
-                    Freight = item.Freight,
-                    ShipTo = item.ShipTo,
-                    SymbolCode = item.SymbolCode,
-                    Status = item.Status,
-                    OrderTotal = item.OrderTotal,
-                    Details = item.Details,
-                    Company = item.CompanyName
+                    CompanyName = item.CompanyName,
+                    Symbol = "\uE819"
                 };
                 Source.Add(dataItem);
             }
+
+            Source.Add(new CompanyListView {
+                CompanyName = "New",
+                Symbol = "\uE710"
+            });;;
         }
 
         private void OnItemClick(CompanyListView clickedItem)
         {
-            if (clickedItem != null)
+            if (clickedItem != null && clickedItem.CompanyName != "New")
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnimation(clickedItem);
-                NavigationService.Navigate<CompanyDetailPage>(clickedItem.OrderId);
+                NavigationService.Navigate<CompanyDetailPage>(clickedItem.CompanyId);
+            }
+            else
+            {
+                NavigationService.Navigate<CompanyAddPage>();
             }
         }
     }

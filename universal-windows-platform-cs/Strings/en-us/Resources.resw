@@ -189,4 +189,8 @@
     <value>OrderAdd</value>
     <comment>Navigation view item name for OrderAdd</comment>
   </data>
+  <data name="Shell_CompanyAdd.Content" xml:space="preserve">
+    <value>CompanyAdd</value>
+    <comment>Navigation view item name for CompanyAdd</comment>
+  </data>
 </root>

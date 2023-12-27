@@ -44,8 +44,7 @@ namespace universalwindowsplatformcs.Migration.Migrations
                 Freight = table.Column<double>(nullable: false),
                 ShipTo = table.Column<string>(nullable: true),
                 OrderTotal = table.Column<double>(nullable: false),
-                Status = table.Column<string>(nullable: true),
-                SymbolCode = table.Column<int>(nullable: false)
+                Status = table.Column<string>(nullable: true)
             },
             constraints: table =>
             {
