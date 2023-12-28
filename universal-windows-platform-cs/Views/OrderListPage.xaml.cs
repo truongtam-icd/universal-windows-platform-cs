@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
 using Windows.UI.Xaml;
+using universal_windows_platform_cs.Services;
 
 namespace universal_windows_platform_cs.Views
 {
@@ -26,6 +27,10 @@ namespace universal_windows_platform_cs.Views
             await Task.Delay(100);
             await ViewModel.LoadDataAsync();
             LoadingControl.IsLoading = false;
+            if (ViewModel.Source.Count == 0)
+            {
+                NavigationService.Navigate<OrderAddPage>();
+            }
         }
 
         private async void UpdateOrderData(object sender, DataGridCellEditEndedEventArgs e)

@@ -17,7 +17,7 @@
             -->
             <loading:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
                 <!-- Loading screen content -->
-                Loading ...
+                <ProgressRing IsActive="True" />
             </loading:Loading>
 
             <controls:TwoPaneView
@@ -75,11 +75,26 @@
                 </controls:TwoPaneView.Pane2>
             </controls:TwoPaneView>
 
-            <Button
-                Command="{x:Bind ViewModel.CreateProductCommand}"
-                Content="Submit"
-                Margin="0,0,0,20"
+            <Border
+                BorderThickness="1"
+                BorderBrush="#aba5a4"
+                Margin="-30,0,0,20"
                 Width="450"
+                Height="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom" >
+                <AppBarButton
+                    Command="{x:Bind ViewModel.CreateProductCommand}"
+                    Icon="Save"
+                    Width="450"
+                    Height="48"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" />
+            </Border>
+
+            <TextBlock
+                Margin="30,0,0,37"
+                Text="Save"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom" />
         </Grid>

@@ -18,9 +18,15 @@
         <Grid>
             <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
                 <!-- Loading screen content -->
-                Loading ...
+                <ProgressRing IsActive="True" />
             </controls:Loading>
-
+            
+            <AppBarButton
+                Icon="Add"
+                Label="New Order"
+                HorizontalAlignment="Right"
+                Command="{x:Bind ViewModel.CreateOrderCommand}" />
+            
             <controls:DataGrid
                 x:Name="OderData"
                 x:Uid="DataTable"
@@ -29,21 +35,17 @@
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                 CellEditEnded="UpdateOrderData"
                 HorizontalScrollBarVisibility="Visible"
-                Margin="0,48,0,85">
+                Margin="{StaticResource MarginDataGrid}" >
                 <controls:DataGrid.Columns>
                     <controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
+                                <AppBarButton
+                                    Height="48"
                                     Command="{Binding NavigateCommand}"
-                                    CommandParameter="{Binding OrderId}">
-                                    <FontIcon
-                                        Margin="{StaticResource SmallLeftRightMargin}"
-                                        HorizontalAlignment="Left"
-                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        Glyph="&#xE7AC;"
-                                    />
-                                </Button>
+                                    CommandParameter="{Binding OrderId}"
+                                    Icon="List" >
+                                </AppBarButton>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
@@ -83,28 +85,18 @@
                     <controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
+                                <AppBarButton
+                                    Height="48"
+                                    Icon="Delete"
                                     Command="{Binding RemoveOrderCommand}"
                                     CommandParameter="{Binding OrderId}"
                                     Click="ReloadPage" >
-                                    <FontIcon
-                                        Margin="{StaticResource SmallLeftRightMargin}"
-                                        HorizontalAlignment="Left"
-                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        Glyph="&#xE74D;"
-                                    />
-                                </Button>
+                                </AppBarButton>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
-            
-            <Button
-                Command="{x:Bind ViewModel.CreateOrderCommand}"
-                Margin="10,0,0,20"
-                VerticalAlignment="Bottom"
-                Content="Add Order" />
         </Grid>
     </Grid>
 </Page>

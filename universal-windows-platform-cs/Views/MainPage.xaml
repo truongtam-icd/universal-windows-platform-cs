@@ -17,7 +17,7 @@
 
             <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
                 <!-- Loading screen content -->
-                Loading ...
+                <ProgressRing IsActive="True" />
             </controls:Loading>
 
             <controls:Loading IsLoading="True">

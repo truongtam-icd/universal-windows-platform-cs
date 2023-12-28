@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using universal_windows_platform_cs.Core.Models;

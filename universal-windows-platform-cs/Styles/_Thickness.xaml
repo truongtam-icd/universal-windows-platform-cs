@@ -35,4 +35,6 @@
     <Thickness x:Key="OffsetHeader">0,28,0,-28</Thickness>
     <!--SmallLeftTopMarginDatePicker-->
     <Thickness x:Key="SmallLeftTopMarginDatePicker">0, 17, 0, 0</Thickness>
+    <!--MarginDataGrid-->
+    <Thickness x:Key="MarginDataGrid">0, 60, 0, 0</Thickness>
 </ResourceDictionary>

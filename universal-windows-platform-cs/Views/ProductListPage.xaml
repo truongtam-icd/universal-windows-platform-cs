@@ -13,12 +13,18 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}">
                 <!-- Loading screen content -->
-                Loading ...
+                <ProgressRing IsActive="True" />
             </controls:Loading>
 
             <TextBlock
                 Text="{x:Bind OrderName}"
                 Margin="{StaticResource OffsetHeader}"></TextBlock>
+
+            <AppBarButton
+                Icon="Add"
+                Label="New Order"
+                HorizontalAlignment="Right"
+                Command="{x:Bind ViewModel.AddProductCommand}" />
 
             <controls:DataGrid
                 x:Name="ProductData"
@@ -27,8 +33,8 @@
                 GridLinesVisibility="Horizontal"
                 ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                 HorizontalScrollBarVisibility="Visible"
-                Margin="0,48,0,100"
-                CellEditEnded="UpdateProductData" >
+                CellEditEnded="UpdateProductData"
+                Margin="{StaticResource MarginDataGrid}" >
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn
                         Binding="{Binding ProductId}"
@@ -56,27 +62,18 @@
                     <controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
+                                <AppBarButton
+                                    Height="48"
+                                    Icon="Delete"
                                     Command="{Binding RemoveProductCommand}"
                                     CommandParameter="{Binding ProductId}"
                                     Click="ReloadPage" >
-                                    <FontIcon
-                                        Margin="{StaticResource SmallLeftRightMargin}"
-                                        HorizontalAlignment="Left"
-                                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        Glyph="&#xE74D;"
-                                    />  
-                                </Button>
+                                </AppBarButton>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
-            <Button
-                Command="{x:Bind ViewModel.AddProductCommand}"
-                Margin="10,0,0,20"
-                VerticalAlignment="Bottom"
-                Content="Add Product" />
         </Grid>
     </Grid>
 </Page>
