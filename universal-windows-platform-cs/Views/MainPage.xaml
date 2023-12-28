@@ -21,9 +21,7 @@
             </controls:Loading>
 
             <controls:Loading IsLoading="True">
-                <TextBlock
-                    Text="Welcome!"
-                    FontSize="{StaticResource LargeFontSize}" />
+                <Image Source="/Assets/logo_icd.png" />
             </controls:Loading>
         </Grid>
     </Grid>
