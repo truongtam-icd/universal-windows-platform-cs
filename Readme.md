@@ -108,3 +108,10 @@ Rollback
 cd ~\project\universal-windows-platform-cs.Migration
 dotnet ef database update 0 --framework net5.0
 ```
+
+## Other
+
+```bash
+https://github.com/microsoft/TemplateStudio/tree/main/docs/UWP
+https://viblo.asia/p/tim-hieu-ve-mo-hinh-mvvm-maGK7vW95j2
+```
