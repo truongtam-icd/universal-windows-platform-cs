@@ -17,10 +17,10 @@ namespace universal_windows_platform_cs.Tests.MSTest
         [TestMethod]
         public async Task TestGet()
         {
-            JObject data = await HttpService.Get(UrlGet);
-            Debug.WriteLine(data);
+            GetData data = await HttpService.Get(UrlGet);
+            // Debug.WriteLine(data);
             Assert.IsNotNull(data);
-            Assert.AreEqual(data["url"], UrlGet);
+            Assert.AreEqual(data.Url, UrlGet);
         }
 
         [TestMethod]
@@ -31,11 +31,11 @@ namespace universal_windows_platform_cs.Tests.MSTest
                 { "string1", "hello" },
                 { "string2", "world" }
             };
-            JObject data = await HttpService.Post(UrlPost, values);
-            Debug.WriteLine(data);
+            PostData data = await HttpService.Post(UrlPost, values);
+            // Debug.WriteLine(data);
             Assert.IsNotNull(data);
-            Assert.AreEqual(data["form"]["string1"], "hello");
-            Assert.AreEqual(data["form"]["string2"], "world");
+            Assert.AreEqual(data.Form["string1"], "hello");
+            Assert.AreEqual(data.Form["string2"], "world");
         }
     }
 }
