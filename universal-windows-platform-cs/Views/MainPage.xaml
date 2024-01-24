@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:userControl="using:universal_windows_platform_cs.UserControl"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
@@ -23,6 +24,14 @@
             <controls:Loading IsLoading="True">
                 <Image Source="/Assets/logo_icd.png" />
             </controls:Loading>
-        </Grid>
+
+            <Button
+                Command="{x:Bind ViewModel.MainViewCommand}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,30,0,0" >
+                <userControl:IconControl Icon="Setting" />
+            </Button>
+        </Grid> 
     </Grid>
 </Page>
