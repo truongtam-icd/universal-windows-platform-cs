@@ -25,13 +25,12 @@
                 <Image Source="/Assets/logo_icd.png" />
             </controls:Loading>
 
-            <Button
-                Command="{x:Bind ViewModel.MainViewCommand}"
+            <userControl:IconControl
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="0,30,0,0" >
-                <userControl:IconControl Icon="Setting" />
-            </Button>
+                Margin="0,30,10,0"
+                Icon="Setting"
+                Command="{x:Bind ViewModel.MainViewCommand}" />
         </Grid> 
     </Grid>
 </Page>

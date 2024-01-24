@@ -9,10 +9,14 @@
     d:DesignWidth="100">
 
     <Grid>
-        <Image
-            Source="{x:Bind Icon}"
-            Width="30"
-            Height="30" >
-        </Image>
+        <Button
+            Command="{x:Bind Command}"
+            CommandParameter="{x:Bind CommandParameter}">
+            <Image
+                Source="{x:Bind Icon}"
+                Width="30"
+                Height="30">
+            </Image>
+        </Button>
     </Grid>
 </UserControl>

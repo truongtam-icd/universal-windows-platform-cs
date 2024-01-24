@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.UI.Xaml.Media;
+﻿using System.Windows.Input;
 
 namespace universal_windows_platform_cs.UserControl
 {
     public partial class IconControl : Windows.UI.Xaml.Controls.UserControl
     {
         private string ImageSource { get; set; }
+        private ICommand IconICommand { get; set; }
+        private string IconCommandParameter { get; set; }
         private readonly string NoImage = "/Assets/icons8-multiply-48.png";
 
         public IconControl()
@@ -36,6 +36,17 @@ namespace universal_windows_platform_cs.UserControl
                         break;
                 }
             }
+        }
+
+        public ICommand Command {
+            get { return IconICommand; }
+            set { IconICommand = (ICommand)value; }
+        }
+
+        public string CommandParameter
+        {
+            get { return IconCommandParameter; }
+            set { IconCommandParameter = value; }
         }
     }
 }
