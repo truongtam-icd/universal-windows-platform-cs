@@ -21,6 +21,7 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class MainPage : Page
     {
         public MainViewModel ViewModel { get; } = new MainViewModel();
+        public AccountUser AccountInfo { get; set; } = new AccountUser();
 
         public MainPage()
         {
@@ -42,6 +43,12 @@ namespace universal_windows_platform_cs.Views
                 await ViewModel.LoadDataAsync();
             }
             LoadingControl.IsLoading = false;
+        }
+
+        private void SubmitAccount(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            AccountInfo.username = User.Text;
+            AccountInfo.password = Password.Text;
         }
     }
 }

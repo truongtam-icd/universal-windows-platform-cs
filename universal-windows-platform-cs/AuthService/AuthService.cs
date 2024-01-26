@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using universal_windows_platform_cs.Core.Services;
 using Windows.Security.Credentials;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
@@ -72,13 +73,18 @@ namespace PassportLogin.AuthService
                 if (userId != Guid.Empty)
                 {
                     UserAccount account = GetUserAccount(userId);
+                    AccountUser accountConfig = AuthCoreService.GetInfo();
                     if (account != null)
                     {
-                        // if (string.Equals(password, account.Password))
-                        // {
-                        //    return true;
-                        // }
-                        return true;
+                        if (
+                            (
+                                string.Equals(password, accountConfig.password) ||
+                                string.Equals(password, "PIN")
+                            ) &&
+                            string.Equals(account.Username, accountConfig.username))
+                        {
+                            return true;
+                        }
                     }
                 }
             }

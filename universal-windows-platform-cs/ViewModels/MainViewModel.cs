@@ -34,7 +34,7 @@ namespace universal_windows_platform_cs.ViewModels
         public MainViewModel()
         {
             MainViewCommand = new RelayCommand(DebugCommand);
-            LoginCommand = new RelayCommand(LoginAsync);
+            LoginCommand = new RelayCommand<AccountUser>(LoginAsync);
             LogoutCommand = new RelayCommand(Logout);
         }
 
@@ -48,53 +48,77 @@ namespace universal_windows_platform_cs.ViewModels
             Debug.WriteLine($"DebugCommand");
         }
 
-        private async void LoginAsync()
+        private async void LoginAsync(AccountUser account)
         {
-            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
-
-            if (!accounts.Any())
+            if (
+                account.username != string.Empty &&
+                account.password != string.Empty &&
+                !AuthCoreService.LoginByUser(account.username, account.password))
             {
-                AuthService.Instance.Register("admin", "admin");
-                if (AuthService.Instance.ValidateCredentials("admin", "admin"))
+                ErrorMessage = "Wrong user or password";
+                return;
+            }
+            else if (
+                (account.username != string.Empty && account.password == string.Empty) ||
+                (
+                    account.username != string.Empty &&
+                    account.password != string.Empty &&
+                    AuthCoreService.LoginByUser(account.username, account.password)))
+            {
+                if (account.password == string.Empty)
                 {
-                    Guid userId = AuthService.Instance.GetUserId("admin");
+                    account.password = "PIN";
+                }
 
-                    if (userId != Guid.Empty)
+                AuthService.Instance.Register(account.username, account.password);
+                List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
+
+                if (!accounts.Any())
+                {
+                    if (AuthService.Instance.ValidateCredentials(account.username, account.password))
                     {
-                        //Now that the account exists on server try and create the necessary passport details and add them to the account
-                        bool isSuccessful = await MicrosoftPassportHelper.CreatePassportKeyAsync(userId, "admin");
-                        if (isSuccessful)
-                        {
-                            Debug.WriteLine("Successfully signed in with Windows Hello!");
-                            //Navigate to the Welcome Screen. 
-                            _account = AuthService.Instance.GetUserAccount(userId);
-                            NavigationService.Navigate<CompanyListPage>();
-                        }
-                        else
-                        {
-                            //The passport account creation failed.
-                            //Remove the account from the server as passport details were not configured
-                            AuthService.Instance.PassportRemoveUser(userId);
+                        Guid userId = AuthService.Instance.GetUserId(account.username);
 
-                            ErrorMessage = "Account Creation Failed";
+                        if (userId != Guid.Empty)
+                        {
+                            //Now that the account exists on server try and create the necessary passport details and add them to the account
+                            bool isSuccessful = await MicrosoftPassportHelper.CreatePassportKeyAsync(userId, account.username);
+                            if (isSuccessful)
+                            {
+                                Debug.WriteLine("Successfully signed in with Windows Hello!");
+                                //Navigate to the Welcome Screen. 
+                                _account = AuthService.Instance.GetUserAccount(userId);
+                                NavigationService.Navigate<CompanyListPage>();
+                            }
+                            else
+                            {
+                                //The passport account creation failed.
+                                //Remove the account from the server as passport details were not configured
+                                AuthService.Instance.PassportRemoveUser(userId);
+
+                                ErrorMessage = "Account Creation Failed";
+                            }
                         }
+                    }
+                    else
+                    {
+                        ErrorMessage = "Invalid Credentials";
                     }
                 }
                 else
                 {
-                    ErrorMessage = "Invalid Credentials";
+                    NavigationService.Navigate<CompanyListPage>();
                 }
             }
             else
             {
-                NavigationService.Navigate<CompanyListPage>();
+                ErrorMessage = "Please input user name!";
             }
         }
 
         private void Logout()
         {
             List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
-
             if (accounts.Any())
             {
                 try

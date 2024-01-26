@@ -40,7 +40,9 @@
                     x:Name="Login"
                     Content="Login"
                     Margin="0,40,0,0"
-                    Command="{x:Bind ViewModel.LoginCommand}" />
+                    Command="{x:Bind ViewModel.LoginCommand}"
+                    CommandParameter="{x:Bind AccountInfo}"
+                    Click="SubmitAccount" />
                 <Button
                     HorizontalAlignment="Center"
                     x:Name="Logout"

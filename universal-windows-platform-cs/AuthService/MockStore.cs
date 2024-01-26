@@ -25,23 +25,6 @@ namespace PassportLogin.AuthService
             LoadAccountListAsync();
         }
 
-        private void InitializeSampleUserAccounts()
-        {
-            // Create a sample Traditional User Account that only has a Username and Password
-            // This will be used initially to demonstrate how to migrate to use Windows Hello
-
-            UserAccount sampleUserAccount = new UserAccount()
-            {
-                UserId = Guid.NewGuid(),
-                Username = "admin",
-                Password = "admin",
-            };
-
-            // Add the sampleUserAccount to the _mockDatabase
-            _mockDatabaseUserAccountsList.Add(sampleUserAccount);
-            SaveAccountListAsync();
-        }
-
         public Guid GetUserId(string username)
         {
             if (_mockDatabaseUserAccountsList.Any())
@@ -199,15 +182,6 @@ namespace PassportLogin.AuthService
                 string accountsXml = await FileIO.ReadTextAsync(accountsFile);
                 DeserializeXmlToAccountList(accountsXml);
             }
-
-            // If the UserAccountList does not contain the sampleUser Initialize the sample users
-            // This is only needed as it in a Hand on Lab to demonstrate a user migrating
-            // In the real world user accounts would just be in a database
-            //if (!_mockDatabaseUserAccountsList.Any(f => f.Username.Equals("admin")))
-            //{
-            //    //If the list is empty InitializeSampleAccounts and return the list
-            //    InitializeSampleUserAccounts();
-            //}
         }
 
         /// <summary>
