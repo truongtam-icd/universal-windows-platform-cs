@@ -114,4 +114,5 @@ dotnet ef database update 0 --framework net5.0
 ```bash
 https://github.com/microsoft/TemplateStudio/tree/main/docs/UWP
 https://viblo.asia/p/tim-hieu-ve-mo-hinh-mvvm-maGK7vW95j2
+https://learn.microsoft.com/en-us/windows/uwp/security/microsoft-passport-login-auth-service
 ```

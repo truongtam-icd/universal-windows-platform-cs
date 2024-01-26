@@ -21,9 +21,33 @@
                 <ProgressRing IsActive="True" />
             </controls:Loading>
 
-            <controls:Loading IsLoading="True">
-                <Image Source="/Assets/logo_icd.png" />
-            </controls:Loading>
+            <StackPanel
+                Width="500"
+                VerticalAlignment="Center">
+                <TextBox
+                    x:Name="User"
+                    Header="User" />
+                <TextBox
+                    x:Name="Password"
+                    Header="Password" />
+                <TextBlock
+                    x:Name="ErrorMessage"
+                    Foreground="Red"
+                    HorizontalAlignment="Center"
+                    Text="{Binding ErrorMessage, Mode=OneWay}" />
+                <Button
+                    HorizontalAlignment="Center"
+                    x:Name="Login"
+                    Content="Login"
+                    Margin="0,40,0,0"
+                    Command="{x:Bind ViewModel.LoginCommand}" />
+                <Button
+                    HorizontalAlignment="Center"
+                    x:Name="Logout"
+                    Content="Logout"
+                    Margin="0,40,0,0"
+                    Command="{x:Bind ViewModel.LogoutCommand}" />
+            </StackPanel>
 
             <userControl:IconControl
                 HorizontalAlignment="Right"

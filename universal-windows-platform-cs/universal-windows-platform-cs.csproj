@@ -152,8 +152,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="AuthService\AuthService.cs" />
+    <Compile Include="AuthService\UserAccount.cs" />
+    <Compile Include="AuthService\PassportDevice.cs" />
+    <Compile Include="AuthService\MockStore.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Helpers\MicrosoftPassportHelper.cs" />
+    <Compile Include="Helpers\AuthHelper.cs" />
     <Compile Include="Helpers\DateTimeConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
