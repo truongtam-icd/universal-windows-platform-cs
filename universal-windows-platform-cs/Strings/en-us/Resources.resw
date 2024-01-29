@@ -193,4 +193,8 @@
     <value>CompanyAdd</value>
     <comment>Navigation view item name for CompanyAdd</comment>
   </data>
+  <data name="Shell_Logout.Content" xml:space="preserve">
+    <value>Logout</value>
+    <comment>Navigation logout</comment>
+  </data>
 </root>

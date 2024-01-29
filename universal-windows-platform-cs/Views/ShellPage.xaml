@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:behaviors="using:universal_windows_platform_cs.Behaviors"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:helpers="using:universal_windows_platform_cs.Helpers"
     xmlns:views="using:universal_windows_platform_cs.Views"
@@ -35,18 +34,26 @@
             <winui:NavigationViewItem
                 x:Uid="Shell_Main"
                 Icon="Home"
-                helpers:NavHelper.NavigateTo="views:MainPage" />
+                helpers:NavHelper.NavigateTo="views:MainPage"
+                Visibility="{Binding HiddenMainPage, Mode=OneWay}" />
             <winui:NavigationViewItem
                 x:Uid="Shell_CompanyList"
                 Icon="ReportHacked"
                 helpers:NavHelper.NavigateTo="views:CompanyListPage"
-                Visibility="Visible" />
+                Visibility="{Binding VisibilityStatus, Mode=OneWay}" />
             <winui:NavigationViewItem
                 x:Uid="Shell_OrderList"
                 Icon="AllApps"
                 helpers:NavHelper.NavigateTo="views:OrderListPage"
-                Visibility="Visible" />
+                Visibility="{Binding VisibilityStatus, Mode=OneWay}" />
         </winui:NavigationView.MenuItems>
+
+        <winui:NavigationView.FooterMenuItems>
+            <winui:NavigationViewItem>
+                <Button Content="Logout" Command="{Binding LogoutCommand, Mode=OneWay}"></Button>
+            </winui:NavigationViewItem>
+        </winui:NavigationView.FooterMenuItems>
+
         <i:Interaction.Behaviors>
             <!--
                 <behaviors:NavigationViewHeaderBehavior

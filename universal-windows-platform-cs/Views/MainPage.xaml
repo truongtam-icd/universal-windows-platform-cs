@@ -43,12 +43,6 @@
                     Command="{x:Bind ViewModel.LoginCommand}"
                     CommandParameter="{x:Bind AccountInfo}"
                     Click="SubmitAccount" />
-                <Button
-                    HorizontalAlignment="Center"
-                    x:Name="Logout"
-                    Content="Logout"
-                    Margin="0,40,0,0"
-                    Command="{x:Bind ViewModel.LogoutCommand}" />
             </StackPanel>
 
             <userControl:IconControl

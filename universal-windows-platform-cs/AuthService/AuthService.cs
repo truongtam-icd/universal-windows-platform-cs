@@ -76,11 +76,7 @@ namespace PassportLogin.AuthService
                     AccountUser accountConfig = AuthCoreService.GetInfo();
                     if (account != null)
                     {
-                        if (
-                            (
-                                string.Equals(password, accountConfig.password) ||
-                                string.Equals(password, "PIN")
-                            ) &&
+                        if ((string.Equals(password, accountConfig.password) || string.Equals(password, "PIN")) &&
                             string.Equals(account.Username, accountConfig.username))
                         {
                             return true;

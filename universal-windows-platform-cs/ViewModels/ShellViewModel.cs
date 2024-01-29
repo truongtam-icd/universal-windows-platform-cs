@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-
+using Microsoft.UI.Xaml.Controls;
+using PassportLogin.AuthService;
+using PassportLogin.Utils;
 using universal_windows_platform_cs.Helpers;
 using universal_windows_platform_cs.Services;
 using universal_windows_platform_cs.Views;
 
 using Windows.System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -31,6 +35,19 @@ namespace universal_windows_platform_cs.ViewModels
         private WinUI.NavigationViewItem _selected;
         private ICommand _loadedCommand;
         private ICommand _itemInvokedCommand;
+        public ICommand LogoutCommand { get; set; }
+        private Visibility _visibilityStatus = Visibility.Collapsed;
+        public Visibility VisibilityStatus
+        {
+            get { return _visibilityStatus; }
+            set { SetProperty(ref _visibilityStatus, value); }
+        }
+        private Visibility _hiddenMainPage = Visibility.Visible;
+        public Visibility HiddenMainPage
+        {
+            get { return _hiddenMainPage; }
+            set { SetProperty(ref _hiddenMainPage, value); }
+        }
 
         public bool IsBackEnabled
         {
@@ -50,6 +67,7 @@ namespace universal_windows_platform_cs.ViewModels
 
         public ShellViewModel()
         {
+            LogoutCommand = new RelayCommand(Logout);
         }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
@@ -72,7 +90,7 @@ namespace universal_windows_platform_cs.ViewModels
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
-        {
+        {              
             if (args.IsSettingsInvoked)
             {
                 NavigationService.Navigate(typeof(SettingsPage), null, args.RecommendedNavigationTransitionInfo);
@@ -101,7 +119,24 @@ namespace universal_windows_platform_cs.ViewModels
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            // Check login
+            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
+
+            if (accounts.Any())
+            {
+                VisibilityStatus = Visibility.Visible;
+                HiddenMainPage = Visibility.Collapsed;
+            }
+            else
+            {
+                VisibilityStatus = Visibility.Collapsed;
+                HiddenMainPage = Visibility.Visible;
+            }
+
+            Debug.WriteLine($"Frame_Navigated: {VisibilityStatus}");
+
             IsBackEnabled = NavigationService.CanGoBack;
+
             if (e.SourcePageType == typeof(SettingsPage))
             {
                 Selected = _navigationView.SettingsItem as WinUI.NavigationViewItem;
@@ -156,6 +191,24 @@ namespace universal_windows_platform_cs.ViewModels
         {
             var result = NavigationService.GoBack();
             args.Handled = result;
+        }
+
+        private void Logout()
+        {
+            Debug.WriteLine($"Logout: ");
+            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
+            if (accounts.Any())
+            {
+                try
+                {
+                    AuthService.Instance.PassportRemoveUser(accounts.First().UserId);
+                    NavigationService.Navigate<MainPage>();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"{ex.Message}");
+                }
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ namespace universal_windows_platform_cs.ViewModels
         private bool _isExistingAccount;
         public ICommand MainViewCommand { get; set; }
         public ICommand LoginCommand { get; set; }
-        public ICommand LogoutCommand { get; set; }
         private string _errorMessage = "";
         public string ErrorMessage
         {
@@ -35,7 +34,6 @@ namespace universal_windows_platform_cs.ViewModels
         {
             MainViewCommand = new RelayCommand(DebugCommand);
             LoginCommand = new RelayCommand<AccountUser>(LoginAsync);
-            LogoutCommand = new RelayCommand(Logout);
         }
 
         public async Task LoadDataAsync()
@@ -50,22 +48,19 @@ namespace universal_windows_platform_cs.ViewModels
 
         private async void LoginAsync(AccountUser account)
         {
-            if (
-                account.username != string.Empty &&
-                account.password != string.Empty &&
+            if (!string.IsNullOrEmpty(account.username) &&
+                !string.IsNullOrEmpty(account.password) &&
                 !AuthCoreService.LoginByUser(account.username, account.password))
             {
                 ErrorMessage = "Wrong user or password";
                 return;
             }
-            else if (
-                (account.username != string.Empty && account.password == string.Empty) ||
-                (
-                    account.username != string.Empty &&
-                    account.password != string.Empty &&
-                    AuthCoreService.LoginByUser(account.username, account.password)))
+            else if ((!string.IsNullOrEmpty(account.username) && string.IsNullOrEmpty(account.password)) ||
+                (!string.IsNullOrEmpty(account.username) &&
+                !string.IsNullOrEmpty(account.password) &&
+                AuthCoreService.LoginByUser(account.username, account.password)))
             {
-                if (account.password == string.Empty)
+                if (string.IsNullOrEmpty(account.password))
                 {
                     account.password = "PIN";
                 }
@@ -113,22 +108,6 @@ namespace universal_windows_platform_cs.ViewModels
             else
             {
                 ErrorMessage = "Please input user name!";
-            }
-        }
-
-        private void Logout()
-        {
-            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
-            if (accounts.Any())
-            {
-                try
-                {
-                    AuthService.Instance.PassportRemoveUser(accounts.First().UserId);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"{ex.Message}");
-                }
             }
         }
     }
