@@ -1,7 +1,5 @@
-﻿using System;
-
-using Microsoft.Toolkit.Uwp.UI.Animations;
-
+﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+using PassportLogin.AuthService;
 using universal_windows_platform_cs.Services;
 using universal_windows_platform_cs.ViewModels;
 
@@ -13,14 +11,22 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class CompanyDetailPage : Page
     {
         public CompanyDetailViewModel ViewModel { get; } = new CompanyDetailViewModel();
-
+        private AuthService authService = new AuthService();
         public CompanyDetailPage()
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             base.OnNavigatedTo(e);
             this.RegisterElementForConnectedAnimation("animationKeyCompanyDetail", itemHero);
             if (e.Parameter is int CompanyId)

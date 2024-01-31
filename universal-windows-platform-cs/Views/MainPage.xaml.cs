@@ -1,20 +1,10 @@
-﻿using System;
-
-using universal_windows_platform_cs.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-
-using universal_windows_platform_cs.Core.Services;
-
+﻿using PassportLogin.AuthService;
 // using Logger;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using universal_windows_platform_cs.Core.Services;
+using universal_windows_platform_cs.ViewModels;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using PassportLogin.AuthService;
-using System.Collections.Generic;
-using PassportLogin.Utils;
-using System.Linq;
-using universal_windows_platform_cs.Services;
 
 namespace universal_windows_platform_cs.Views
 {
@@ -22,9 +12,14 @@ namespace universal_windows_platform_cs.Views
     {
         public MainViewModel ViewModel { get; } = new MainViewModel();
         public AccountUser AccountInfo { get; set; } = new AccountUser();
+        private AuthService authService = new AuthService();
 
         public MainPage()
         {
+            if (authService.IsLoginedIn())
+            {
+                return;
+            }
             InitializeComponent();
             LoadingControl.IsLoading = true;
             DataContext = ViewModel;
@@ -34,14 +29,13 @@ namespace universal_windows_platform_cs.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
-            
-            if (accounts.Any())
+            if (authService.IsLoginedIn())
             {
-                base.OnNavigatedTo(e);
-                await Task.Delay(100);
-                await ViewModel.LoadDataAsync();
+                return;
             }
+            base.OnNavigatedTo(e);
+            await Task.Delay(100);
+            await ViewModel.LoadDataAsync();
             LoadingControl.IsLoading = false;
         }
 

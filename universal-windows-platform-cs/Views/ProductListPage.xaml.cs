@@ -1,9 +1,8 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using System.Diagnostics;
+using PassportLogin.AuthService;
 using System.Threading.Tasks;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.Core.Services;
-using universal_windows_platform_cs.Services;
 using universal_windows_platform_cs.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,15 +14,23 @@ namespace universal_windows_platform_cs.Views
     {
         public ProductListViewModel ViewModel { get; } = new ProductListViewModel();
         public string OrderName { get; set; }
-
+        private AuthService authService = new AuthService();
         public ProductListPage()
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             InitializeComponent();
             LoadingControl.IsLoading = true;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             base.OnNavigatedTo(e);
             if (e.Parameter is long OrderId)
             {

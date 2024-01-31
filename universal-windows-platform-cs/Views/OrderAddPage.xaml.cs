@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using PassportLogin.AuthService;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using universal_windows_platform_cs.Core.Models;
-using universal_windows_platform_cs.Core.Services;
 using universal_windows_platform_cs.ViewModels;
 
 using Windows.UI.Xaml.Controls;
@@ -13,11 +13,15 @@ namespace universal_windows_platform_cs.Views
     public sealed partial class OrderAddPage : Page
     {
         public OrderAddViewModel ViewModel { get; } = new OrderAddViewModel();
-
+        private AuthService authService = new AuthService();
         public static Order OrderItem { get; set; }
 
         public OrderAddPage()
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             InitializeComponent();
             OrderItem = new Order();
             LoadingControl.IsLoading = true;
@@ -25,6 +29,10 @@ namespace universal_windows_platform_cs.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             base.OnNavigatedTo(e);
             await Task.Delay(100);
             await ViewModel.LoadDataAsync();

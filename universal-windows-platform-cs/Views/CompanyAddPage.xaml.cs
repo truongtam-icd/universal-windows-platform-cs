@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Threading.Tasks;
+using PassportLogin.AuthService;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.ViewModels;
 
@@ -13,8 +12,13 @@ namespace universal_windows_platform_cs.Views
     {
         public CompanyAddViewModel ViewModel { get; } = new CompanyAddViewModel();
         public static Company CompanyItem { get; set; }
+        private AuthService authService = new AuthService();
         public CompanyAddPage()
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             InitializeComponent();
             CompanyItem = new Company();
             LoadingControl.IsLoading = true;
@@ -22,6 +26,10 @@ namespace universal_windows_platform_cs.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             base.OnNavigatedTo(e);
             LoadingControl.IsLoading = false;
         }

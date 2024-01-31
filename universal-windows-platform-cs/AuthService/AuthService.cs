@@ -1,6 +1,7 @@
-﻿using System;
+﻿using PassportLogin.Utils;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using universal_windows_platform_cs.Core.Services;
 using Windows.Security.Credentials;
 using Windows.Security.Cryptography;
@@ -108,6 +109,16 @@ namespace PassportLogin.AuthService
             // You could get the User's Public Key with something similar to the following:
             byte[] userPublicKey = _mockStore.GetPublicKey(userId, deviceId);
             return true;
+        }
+
+        public bool IsLoginedIn()
+        {
+            List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
+            if (accounts.Any())
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

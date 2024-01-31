@@ -1,10 +1,7 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Diagnostics;
+﻿using Microsoft.UI.Xaml.Controls;
+using PassportLogin.AuthService;
 using universal_windows_platform_cs.Core.Models;
 using universal_windows_platform_cs.ViewModels;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,9 +12,13 @@ namespace universal_windows_platform_cs.Views
         public ProductAddViewModel ViewModel { get; } = new ProductAddViewModel();
 
         public static Product ProductItem { get; set; }
-
+        private AuthService authService = new AuthService();
         public ProductAddPage()
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             InitializeComponent();
             ProductItem = new Product();
             ProductItem.QuantityPerUnit = "0";
@@ -26,6 +27,10 @@ namespace universal_windows_platform_cs.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!(authService.IsLoginedIn()))
+            {
+                return;
+            }
             base.OnNavigatedTo(e);
             if (e.Parameter is long OrderId)
             {

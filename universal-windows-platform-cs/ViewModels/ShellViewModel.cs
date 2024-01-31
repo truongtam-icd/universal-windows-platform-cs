@@ -58,7 +58,7 @@ namespace universal_windows_platform_cs.ViewModels
 
         public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-
+        private AuthService authService = new AuthService();
         public ShellViewModel()
         {
         }
@@ -106,7 +106,14 @@ namespace universal_windows_platform_cs.ViewModels
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
         {
-            NavigationService.GoBack();
+            if (!(authService.IsLoginedIn()))
+            {
+                NavigationService.Navigate<MainPage>();
+            }
+            else
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
