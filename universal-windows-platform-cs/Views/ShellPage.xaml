@@ -46,15 +46,13 @@
                 Icon="AllApps"
                 helpers:NavHelper.NavigateTo="views:OrderListPage"
                 Visibility="{Binding VisibilityStatus, Mode=OneWay}" />
-        </winui:NavigationView.MenuItems>
-
-        <winui:NavigationView.FooterMenuItems>
             <winui:NavigationViewItem
-                Icon="People">
-                <TextBlock Text="{Binding VisibilityStatus, Mode=OneWay}" />
+                Icon="People"
+                Visibility="{Binding VisibilityStatus, Mode=OneWay}">
+                <TextBlock Text="Logout" />
             </winui:NavigationViewItem>
-        </winui:NavigationView.FooterMenuItems>
-
+        </winui:NavigationView.MenuItems>
+        
         <i:Interaction.Behaviors>
             <!--
                 <behaviors:NavigationViewHeaderBehavior

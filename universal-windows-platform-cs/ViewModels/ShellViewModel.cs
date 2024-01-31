@@ -92,13 +92,12 @@ namespace universal_windows_platform_cs.ViewModels
             {
                 var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
                 var pageType = selectedItem?.GetValue(NavHelper.NavigateToProperty) as Type;
-                TextBlock textBox = args.InvokedItem as TextBlock;
 
                 if (pageType != null)
                 {
                     NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
                 }
-                if (textBox != null && textBox.Text == "Visible")
+                if (args.InvokedItem is TextBlock textBox && string.Equals(textBox.Text, "Logout"))
                 {
                     Logout();
                 }
