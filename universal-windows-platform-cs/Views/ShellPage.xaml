@@ -49,8 +49,9 @@
         </winui:NavigationView.MenuItems>
 
         <winui:NavigationView.FooterMenuItems>
-            <winui:NavigationViewItem>
-                <Button Content="Logout" Command="{Binding LogoutCommand, Mode=OneWay}"></Button>
+            <winui:NavigationViewItem
+                Icon="People">
+                <TextBlock Text="{Binding VisibilityStatus, Mode=OneWay}" />
             </winui:NavigationViewItem>
         </winui:NavigationView.FooterMenuItems>
 

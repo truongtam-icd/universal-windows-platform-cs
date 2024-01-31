@@ -1,25 +1,21 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using PassportLogin.AuthService;
+using PassportLogin.Utils;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.UI.Xaml.Controls;
-using PassportLogin.AuthService;
-using PassportLogin.Utils;
 using universal_windows_platform_cs.Helpers;
 using universal_windows_platform_cs.Services;
 using universal_windows_platform_cs.Views;
-
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace universal_windows_platform_cs.ViewModels
@@ -35,7 +31,6 @@ namespace universal_windows_platform_cs.ViewModels
         private WinUI.NavigationViewItem _selected;
         private ICommand _loadedCommand;
         private ICommand _itemInvokedCommand;
-        public ICommand LogoutCommand { get; set; }
         private Visibility _visibilityStatus = Visibility.Collapsed;
         public Visibility VisibilityStatus
         {
@@ -62,12 +57,10 @@ namespace universal_windows_platform_cs.ViewModels
         }
 
         public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
-
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
         public ShellViewModel()
         {
-            LogoutCommand = new RelayCommand(Logout);
         }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
@@ -90,7 +83,7 @@ namespace universal_windows_platform_cs.ViewModels
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
-        {              
+        {
             if (args.IsSettingsInvoked)
             {
                 NavigationService.Navigate(typeof(SettingsPage), null, args.RecommendedNavigationTransitionInfo);
@@ -99,10 +92,15 @@ namespace universal_windows_platform_cs.ViewModels
             {
                 var selectedItem = args.InvokedItemContainer as WinUI.NavigationViewItem;
                 var pageType = selectedItem?.GetValue(NavHelper.NavigateToProperty) as Type;
+                TextBlock textBox = args.InvokedItem as TextBlock;
 
                 if (pageType != null)
                 {
                     NavigationService.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+                }
+                if (textBox != null && textBox.Text == "Visible")
+                {
+                    Logout();
                 }
             }
         }
@@ -132,8 +130,6 @@ namespace universal_windows_platform_cs.ViewModels
                 VisibilityStatus = Visibility.Collapsed;
                 HiddenMainPage = Visibility.Visible;
             }
-
-            Debug.WriteLine($"Frame_Navigated: {VisibilityStatus}");
 
             IsBackEnabled = NavigationService.CanGoBack;
 
@@ -195,7 +191,6 @@ namespace universal_windows_platform_cs.ViewModels
 
         private void Logout()
         {
-            Debug.WriteLine($"Logout: ");
             List<UserAccount> accounts = AuthService.Instance.GetUserAccountsForDevice(AuthHelper.GetDeviceId());
             if (accounts.Any())
             {
